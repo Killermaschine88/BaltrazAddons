@@ -1,0 +1,9 @@
+{
+    "name": "BaltrazAddons",
+    "author": "Baltraz",
+    "description": "Utility Stuff",
+    "helpMessage": "§6Use /ba",
+    "version": "0.0.1",
+    "entry": "index.js",
+    "requires": ["Vigilance", "requestV2", "RenderLib", "PogData"]
+}
