@@ -1,7 +1,7 @@
 /// <reference types="../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProperty, Color } from 'Vigilance';
+import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProperty, @SelectorProperty, @DecimalSliderProperty, Color } from 'Vigilance';
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
@@ -15,7 +15,6 @@ import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProp
         return subcategories.indexOf(a.getValue()[0].attributesExt.subcategory) - subcategories.indexOf(b.getValue()[0].attributesExt.subcategory);
     },
 })
-
 class Settings {
     constructor() {
         this.initialize(this);
@@ -38,7 +37,7 @@ class Settings {
     partyDisplayGui = new Gui();
 
     // -------------------------------------------------------
-    /*                  Dungeon PArty Stuff                 */
+    /*                  Dungeon Party Stuff                 */
     // -------------------------------------------------------
     // Party Auto Kicker
     @SwitchProperty({
@@ -154,7 +153,7 @@ class Settings {
         description: "Move the Party Info display",
         category: "Dungeon Party",
         subcategory: "QOL",
-        placeholder: "Move GUI"
+        placeholder: "Move GUI",
     })
     MovePartyDisplay() {
         this.partyDisplayGui.open();
@@ -170,6 +169,36 @@ class Settings {
         subcategory: "QOL",
     })
     crimsonIslesESP = false;
+
+    // -------------------------------------------------------
+    /*                  Custom Damage Render                */
+    // -------------------------------------------------------
+    @SwitchProperty({
+        name: "Custom Damage Render",
+        description: "Displays a custom Damage Render. If this is Disabled the module will not modify the Damage Splash.\nDefaults to §cDisabled§r.",
+        category: "Damage Render",
+        subcategory: "Damage Render",
+    })
+    customDamageRender = false;
+
+    @SelectorProperty({
+        name: "Custom Damage Type",
+        description: "Size of the custom Damage Render.\nDefaults to §cNormal§r.",
+        category: "Damage Render",
+        subcategory: "Damage Render",
+        options: ["Small", "Normal", "Big", "Custom", "Hidden"],
+    })
+    customDamageType = 1;
+
+    @DecimalSliderProperty({
+        name: "Custom Damage Scale",
+        description: "Sets the custom scale of the Damage Render.\nDefaults to 50 (Default Hypixel Size)",
+        category: "Damage Render",
+        subcategory: "Damage Render",
+        minF: 1,
+        maxF: 100,
+    })
+    customDamageScale = 50;
 
     // -------------------------------------------------------
     /*                         Config                       */
