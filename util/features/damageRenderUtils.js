@@ -13,7 +13,7 @@ export const getDamageScale = (type) => {
 };
 
 export const isValidDamageEntity = (entity) => {
-    if(entity.getName().includes("§8[")) return false; // Ignoring Mob Nametags
+    if (entity.getName().includes("§8[")) return false; // Ignoring Mob Nametags
 
     if (!isNaN(Number(entity.getName().replace("§", "")))) return true; // Non Crits
     if (entity.getName().includes("✧")) return true; // Crits
