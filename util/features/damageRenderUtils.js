@@ -18,7 +18,7 @@ export const isValidDamageEntity = (entity) => {
     if (!isNaN(Number(entity.getName().replace("§", "")))) return true; // Non Crits
     if (entity.getName().includes("✧")) return true; // Crits
     if (entity.getName().includes("§2")) return true; // Venomous Damage
-    if (entity.getName().includes("§6")) return true; // Fire Aspect Damage
+    if (entity.getName().includes("§6") && !isNaN(entity.getName())) return true; // Fire Aspect Damage
     if (entity.getName().includes("§7")) return true; // True Damage
     if (entity.getName().includes("§9")) return true; // IDFK what this damage type is but it exists
 

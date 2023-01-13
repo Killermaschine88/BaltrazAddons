@@ -23,7 +23,7 @@ register("itemTooltip", (lore, item, event) => {
         return addToItemLore(item, "§6Champion: ", "§a" + currentLevel + " §e" + formatNumber(Math.round(currentXP), "comma") + (nextLevel ? " §7/ §e" + formatNumber(Math.round(nextLevel), "comma") : ""));
     }
 
-    if (Settings.showHecatombRuns) {
+    if (Settings.showHecatombLevel) {
         const currentRuns = item?.getNBT()?.getCompoundTag("tag")?.getCompoundTag("ExtraAttributes")?.getInteger("hecatomb_s_runs");
 
         if (!currentRuns) return;

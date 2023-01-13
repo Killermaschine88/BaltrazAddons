@@ -23,6 +23,8 @@ class Settings {
         //this.setCategoryDescription("General", "&aCreated by Baltraz");
         this.setCategoryDescription("Dungeon Party", "&aCreated by Baltraz");
         this.setCategoryDescription("Crimson Isles", "&aCreated by Baltraz");
+        this.setCategoryDescription("Damage Render", "&aCreated by Baltraz");
+        this.setCategoryDescription("Misc", "&aCreated by Baltraz");
         this.setCategoryDescription("Config", "&aCreated by Baltraz");
 
         /* Dependencies */
@@ -217,7 +219,7 @@ class Settings {
         category: "Misc",
         subcategory: "Item Lore",
     })
-    showHecatombRuns = false;
+    showHecatombLevel = false;
 
     // -------------------------------------------------------
     /*                         Config                       */
