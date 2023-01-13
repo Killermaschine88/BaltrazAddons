@@ -31,62 +31,62 @@ class DataLoader {
         }).setCriteria('{"server":"${server}","gametype":"SKYBLOCK","mode":"${mode}","map":"${worldName}"}');
 
         // Party Stuff
-        partyDisbanded.forEach((msg) => {
-            this.registerChat(msg, () => {
-                this.currentParty = {};
-            });
-        });
+        // partyDisbanded.forEach((msg) => {
+        //     this.registerChat(msg, () => {
+        //         this.currentParty = {};
+        //     });
+        // });
 
-        partyInvited.forEach((msg) => {
-            this.registerChat(msg, (name) => {
-                this.currentParty[name.split(" ")[1]] = {
-                    name: name,
-                    class: `&7(&cUnknown [Invited via /p]&7)`,
-                    isLeader: false,
-                };
-            });
-        });
+        // partyInvited.forEach((msg) => {
+        //     this.registerChat(msg, (name) => {
+        //         this.currentParty[name.split(" ")[1]] = {
+        //             name: name,
+        //             class: `&7(&cUnknown [Invited via /p]&7)`,
+        //             isLeader: false,
+        //         };
+        //     });
+        // });
 
-        partyFinderJoined.forEach((msg) => {
-            this.registerChat(msg, (name, selectedClass, classLevel) => {
-                getUUID(name).then((res) => {
-                    const uuid = res.id;
+        // partyFinderJoined.forEach((msg) => {
+        //     this.registerChat(msg, (name, selectedClass, classLevel) => {
+        //         getUUID(name).then((res) => {
+        //             const uuid = res.id;
 
-                    getHypixelPlayerData(uuid).then((res) => {
-                        const rank = getRank(res);
+        //             getHypixelPlayerData(uuid).then((res) => {
+        //                 const rank = getRank(res);
 
-                        this.currentParty[name] = {
-                            name: `${rank} ${name}`,
-                            class: `&7(&b${selectedClass} ${classLevel}&7)`,
-                            isLeader: false,
-                        };
-                    });
-                });
-            });
-        });
+        //                 this.currentParty[name] = {
+        //                     name: `${rank} ${name}`,
+        //                     class: `&7(&b${selectedClass} ${classLevel}&7)`,
+        //                     isLeader: false,
+        //                 };
+        //             });
+        //         });
+        //     });
+        // });
 
-        partyCreated.forEach((msg) => {
-            this.registerChat(msg, () => {
-                const name = Player.getName();
-                const uuid = Player.getUUID();
-                getHypixelPlayerData(uuid).then((res) => {
-                    const rank = getRank(res);
+        // partyCreated.forEach((msg) => {
+        //     this.registerChat(msg, () => {
+        //         const name = Player.getName();
+        //         const uuid = Player.getUUID();
+        //         getHypixelPlayerData(uuid).then((res) => {
+        //             const rank = getRank(res);
 
-                    this.currentParty[name] = {
-                        name: `${rank} ${name}`,
-                        class: `&7(&cUnknown [Created via PFinder]&7)`,
-                        isLeader: true,
-                    };
-                });
-            });
-        });
+        //             this.currentParty[name] = {
+        //                 name: `${rank} ${name}`,
+        //                 class: `&7(&cUnknown [Created via PFinder]&7)`,
+        //                 isLeader: true,
+        //             };
+        //         });
+        //     });
+        // });
 
-        partyRemoved.forEach((msg) => {
-            this.registerChat(msg, (name) => {
-                if (name.includes(" ")) name = name.split(" ")[1];
-                delete this.currentParty[name];
-            });
-        });
+        // partyRemoved.forEach((msg) => {
+        //     this.registerChat(msg, (name) => {
+        //         if (name.includes(" ")) name = name.split(" ")[1];
+        //         delete this.currentParty[name];
+        //     });
+        // });
     }
 
     // Functions
