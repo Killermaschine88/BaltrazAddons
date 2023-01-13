@@ -1,14 +1,14 @@
-/// <reference types="../../CTAutocomplete" />
+/// <reference types="../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import Settings from "../constants/settings";
-import { essentialsNotification } from "../util/essentials";
+import Settings from "../../constants/settings";
+import { essentialsNotification } from "../../functions/essentials";
 import RenderLib from "RenderLib";
 
 let lastNotification = 0;
 
 register("renderWorld", () => {
-    if (!Settings.crimsonIslesESP) return;
+    if (!Settings.mobHitboxes) return;
 
     if (lastNotification !== 0) {
         lastNotification++;

@@ -1,7 +1,7 @@
 /// <reference types="../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import { convertToPBTime } from "../util";
+import { convertToPBTime } from "../../util";
 
 export const getDungeonRunsDone = (userData, masterMode) => {
     let completedRuns = masterMode === false ? userData.dungeons.dungeon_types.catacombs.tier_completions : userData.dungeons.dungeon_types.master_catacombs.tier_completions;

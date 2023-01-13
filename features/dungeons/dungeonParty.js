@@ -1,13 +1,13 @@
-/// <reference types="../../CTAutocomplete" />
+/// <reference types="../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import Settings from "../constants/settings";
-import { getHypixelPlayerData, getSkyblockPlayerData, getUUID } from "../util/api";
-import { getRank } from "../util/functions";
-import { getDungeonRunsDone, getItemInfo, getMiscInfo } from "../util//features/dungeonPartyUtils";
-import { getLevelByXp } from "../util/levels";
-import { missingAPIKeyError, sendError } from "../util/errors";
-import { prefix } from "../constants/variables";
+import Settings from "../../constants/settings";
+import { getHypixelPlayerData, getSkyblockPlayerData, getUUID } from "../../functions/api";
+import { getRank } from "../../functions/functions";
+import { getDungeonRunsDone, getItemInfo, getMiscInfo } from "../../functions/features/dungeons/dungeonPartyUtils";
+import { getLevelByXp } from "../../functions/levels";
+import { missingAPIKeyError, sendError } from "../../functions/errors";
+import { prefix } from "../../constants/variables";
 
 const dungeonClasses = {
     Mage: "M",

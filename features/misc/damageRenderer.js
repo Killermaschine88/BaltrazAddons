@@ -1,8 +1,8 @@
-/// <reference types="../../CTAutocomplete" />
+/// <reference types="../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import Settings from "../constants/settings";
-import { getDamageScale, isValidDamageEntity } from "../util/features/damageRenderUtils";
+import Settings from "../../constants/settings";
+import { getDamageScale, isValidDamageEntity } from "../../functions/features/misc/damageRenderUtils";
 
 let damageText = [];
 const customDamageTypes = ["Small", "Normal", "Big", "Custom", "Hidden"];
