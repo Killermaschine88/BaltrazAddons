@@ -53,7 +53,7 @@ register("chat", (name, selectedClass, classLevel, event) => {
                                     new TextComponent("&c[Kick]\n").setClick("run_command", `/p kick ${name}`).setHover("show_text", "&7Click to kick this player from the party!"),
                                     new TextComponent(`${prefix} &c[Dungeons] `).setHover("show_text", `${getDungeonRunsDone(userData, false)}`),
                                     new TextComponent("&4[Master Mode] ").setHover("show_text", `${getDungeonRunsDone(userData, true)}`),
-                                    new TextComponent(`&d[Items (${itemInfo.progress})] `).setHover("show_text", `${itemInfo.string}`),
+                                    new TextComponent(`&d[Items (${itemInfo.progress}&d)] `).setHover("show_text", `${itemInfo.string}`),
                                     new TextComponent("&5[Misc Info]").setHover("show_text", `${getMiscInfo(userData, secrets)}`)
                                 ).chat();
                             })
