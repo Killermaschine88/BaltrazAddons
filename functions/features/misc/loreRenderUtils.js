@@ -1,3 +1,6 @@
+/// <reference types="../../../../CTAutocomplete" />
+/// <reference lib="es2015" />
+
 const NBTTagString = Java.type("net.minecraft.nbt.NBTTagString");
 
 // Credit to soopyV2 for the Function
