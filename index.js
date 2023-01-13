@@ -2,7 +2,8 @@
 import "./features/commands";
 import "./features/dungeonParty";
 import "./features/crimsonIsles";
-import "./features/damageRender";
+import "./features/damageRenderer";
+import "./features/loreRenderer";
 
 // Data Loader
 import "./constants/dataLoader";

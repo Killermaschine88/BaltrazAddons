@@ -5,7 +5,7 @@ import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProp
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["Dungeon Party", "Crimson Isles", "Config"];
+        const categories = ["Dungeon Party", "Crimson Isles", "Damage Render", "Misc", "Config"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
@@ -199,6 +199,25 @@ class Settings {
         maxF: 100,
     })
     customDamageScale = 50;
+
+    // -------------------------------------------------------
+    /*                         Misc                         */
+    // -------------------------------------------------------
+    @SwitchProperty({
+        name: "Show Champion Level",
+        description: "Show the current Champion Level in the Item Lore",
+        category: "Misc",
+        subcategory: "Item Lore",
+    })
+    showChampionLevel = false;
+
+    @SwitchProperty({
+        name: "Show Hecatomb Level",
+        description: "Show the current Hecatomb Level in the Item Lore",
+        category: "Misc",
+        subcategory: "Item Lore",
+    })
+    showHecatombRuns = false;
 
     // -------------------------------------------------------
     /*                         Config                       */

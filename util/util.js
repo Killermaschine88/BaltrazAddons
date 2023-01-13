@@ -9,3 +9,13 @@ export const convertToPBTime = (timeStamp) => {
     if (isNaN(minutes) || isNaN(seconds)) return `??:??`;
     return `${minutes ? minutes + ":" : ""}${seconds}`;
 };
+
+export const formatNumber = (number, format="comma") => {
+    if(format === "comma") {
+        if(!number) return ""
+
+        let parts = number.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
+}

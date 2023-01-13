@@ -2,7 +2,7 @@
 /// <reference lib="es2015" />
 
 import Settings from "../constants/settings";
-import { getDamageScale, isValidDamageEntity } from "../util/features/damageRender";
+import { getDamageScale, isValidDamageEntity } from "../util/features/damageRenderUtils";
 
 let damageText = [];
 const customDamageTypes = ["Small", "Normal", "Big", "Custom", "Hidden"];
