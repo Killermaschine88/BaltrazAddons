@@ -184,15 +184,35 @@ class Settings {
     })
     customDamageType = 1;
 
-    @DecimalSliderProperty({
+    @SliderProperty({
         name: "Custom Damage Scale",
         description: "Sets the custom scale of the Damage Render.\nDefaults to 50 (Default Hypixel Size Prolly)",
         category: "Misc",
         subcategory: "Damage Render",
-        minF: 1,
-        maxF: 100,
+        min: 1,
+        max: 100,
     })
     customDamageScale = 50;
+
+    @SliderProperty({
+        name: "Custom Damage Render Amount",
+        description: "Sets the amount of Damage Renders that can be displayed at once.\nDefaults to 20",
+        category: "Misc",
+        subcategory: "Damage Render",
+        min: 1,
+        max: 100,
+    })
+    maxDamageRenderDisplay = 20;
+
+    @SliderProperty({
+        name: "Custom Damage Render Distance",
+        description: "Estimate of the max distance the Damage Render can be displayed.\nDefaults to 10",
+        category: "Misc",
+        subcategory: "Damage Render",
+        min: 1,
+        max: 50,
+    })
+    maxDamageRenderDistance = 10;
 
     // 
     @SwitchProperty({

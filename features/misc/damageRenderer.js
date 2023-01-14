@@ -30,8 +30,8 @@ register("renderEntity", (entity, pos, idk, event) => {
     if (damageText.find((dmg) => dmg.name === entity.name && dmg.x === entity.x && dmg.y === entity.y && dmg.z === entity.z)) return;
 
     // Last Checks
-    if (Math.floor(entity.distanceTo(Player.getX(), Player.getY(), Player.getZ())) >= 7) return;
-    //if (damageText.length >= 15) return;
+    if (Math.floor(entity.distanceTo(Player.getX(), Player.getY(), Player.getZ())) >= Settings.maxDamageRenderDistance) return;
+    if (damageText.length >= Settings.maxDamageRenderDisplay) return;
 
     // Adding to Render List
     damageText.push({ name: entity.name, x: entity.x, y: entity.y, z: entity.z, age: 0 });
