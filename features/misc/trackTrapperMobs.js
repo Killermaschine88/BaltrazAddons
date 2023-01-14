@@ -12,8 +12,7 @@ register("renderWorld", () => {
 
     if (lastNotification !== 0) {
         lastNotification++;
-        ChatLib.chat("added +1")
-        if (lastNotification > 5000) lastNotification = 0;
+        if (lastNotification > 3000) lastNotification = 0;
     }
 
     World.getAllEntitiesOfType(net.minecraft.entity.item.EntityArmorStand).forEach((entity) => {
