@@ -15,7 +15,7 @@ register("renderEntity", (entity, pos, idk, event) => {
     if (entity.getClassName() !== "EntityArmorStand") return;
 
     // Don't render any armorstands if option is "Hidden"
-    if (customDamageTypes[Settings.customDamageType] === "Hidden") {
+    if (customDamageTypes[Settings.customDamageType] === "Hidden" && isValidDamageEntity(entity)) {
         cancel(event);
         return;
     }

@@ -14,8 +14,9 @@ export const getDamageScale = (type) => {
 
 export const isValidDamageEntity = (entity) => {
     if (entity.getName().includes("§8[")) return false; // Ignoring Mob Nametags
+    if (entity.getName().includes(" ")) return false; // Ignoring Stuff with Spaces as DMG ArmorStands don't have spaces
 
-    if (!isNaN(Number(entity.getName().replace("§", "")))) return true; // Non Crits
+    if (!isNaN(Number(entity.getName()))) return true; // Non Crits
     if (entity.getName().includes("✧")) return true; // Crits
     if (entity.getName().includes("§2")) return true; // Venomous Damage
     if (entity.getName().includes("§6") && !isNaN(entity.getName())) return true; // Fire Aspect Damage
