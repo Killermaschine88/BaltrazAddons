@@ -1,14 +1,11 @@
 import Settings from "../../constants/settings";
-import { addToItemLore } from "../../functions/features/misc/loreRenderUtils";
-
-
 
 let firstTime = true;
 let inMenu = false
 let stepTwo = false
 
 register("postGuiRender", (gui) => {
-    //if (!Settings.customSkyblockMenu) return;
+    if (!Settings.tradeMenu) return;
     if (Player.getContainer()?.toString()?.includes("SkyBlock Menu")) {
         inMenu = true;
         let inv = Player.getContainer()
@@ -16,17 +13,18 @@ register("postGuiRender", (gui) => {
         let trade = inv.getStackInSlot(35)
         trade.setLore(["§7View your available trades.", "§7These trades are always", "§7available and accessible through", "§7the SkyBlock Menu.", " ", "§7Trades Unlocked: §a100%", "§2----------------------§e24§6/§e24", " ", "§eClick to view!"])
     }
-    if (Player.getContainer()?.toString()?.includes("eee")) {
+    if (Player.getContainer()?.toString()?.includes("Recipe Book")) {
         if (stepTwo) { 
-            Player.getContainer().click(eee)
+            Player.getContainer().click(50)
         }
+    }
 });
 
 register("guiMouseClick", () => {
     if (inMenu) {
         let slot = Client.currentGui.get().getSlotUnderMouse().field_75222_d
         if (slot === 35) {
-            Player.getContainer().click(eee)
+            Player.getContainer().click(21)
             stepTwo = true
         }
     }

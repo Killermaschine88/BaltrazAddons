@@ -6,7 +6,7 @@ import { defaultMessage } from "../functions/util";
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["Dungeons", "Crimson Isles", "Misc", "Config"];
+        const categories = ["Dungeons", "Crimson Isles", "Misc", "QOL", "Config"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
@@ -22,6 +22,8 @@ import { defaultMessage } from "../functions/util";
             "Damage Render",
             "Item Lore",
             "Misc QOL",
+            // QOL
+            "Pet Swapper",
             // Config
             "Config",
         ];
@@ -259,6 +261,34 @@ class Settings {
     })
     trackTrapperMobs = false;
 
+    // -------------------------------------------------------
+    /*                         QOL FEATURES                 */
+    // -------------------------------------------------------
+
+    @TextProperty({
+        name: "Pet #1",
+        description: "Which pet to swap to when you press the Pet Swapper #1 keybind.\nWill only work if the pet is on the first page of your pet menu.\nWill swap to the pet closest to the top left of the pet menu.", 
+        category: "QOL",
+        subcategory: "Pet Swapper",
+    })
+    pet1 = "";
+
+    @TextProperty({
+        name: "Pet #2",
+        description: "Which pet to swap to when you press the Pet Swapper #1 keybind.\nWill only work if the pet is on the first page of your pet menu.\nWill swap to the pet closest to the top left of the pet menu.", 
+        category: "QOL",
+        subcategory: "Pet Swapper",
+    })
+    pet2 = "";
+
+    @SwitchProperty({
+        name: "Trade Menu QOL",
+        description: `Adds a button to access the trade menu in the main skyblock menu. ${defaultMessage("&cFalse")}`,
+        category: "QOL",
+        subcategory: "Misc QOL",
+    })
+    tradeMenu = false;
+    
     // -------------------------------------------------------
     /*                         Config                       */
     // -------------------------------------------------------

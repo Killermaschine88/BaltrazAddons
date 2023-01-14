@@ -17,6 +17,7 @@ import "./features/misc/trackTrapperMobs";
 
 // QoL
 import "./features/QoL/customSkyblockMenu";
+import "./features/QoL/petSwapper";
 
 /* Data Loader */
 import "./constants/dataLoader";
