@@ -279,6 +279,14 @@ class Settings {
     logErrorsToChat = false;
 
     @SwitchProperty({
+        name: "Allow Essentials Notifications",
+        description: `Toggle if the Addon is allowed to send Notifications via Essentials. ${defaultMessage("&cTrue")}`,
+        category: "Config",
+        subcategory: "Config",
+    })
+    useEssentialsNotifications = true;
+
+    @SwitchProperty({
         name: "Public Release",
         description: `If the release is Public or not. ${defaultMessage("&cTrue")}`,
         category: "Config",

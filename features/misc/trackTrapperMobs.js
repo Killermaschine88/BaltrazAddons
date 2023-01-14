@@ -25,8 +25,10 @@ register("renderWorld", () => {
             if (existedTicks >= 10) {
                 RenderLib.drawEspBox(entity.getX(), entity.getY(), entity.getZ(), 2, 2, 1, 0, 0, 1, Settings.isPublicRelease ? false : true);
                 if (lastNotification === 0) {
-                    essentialsNotification(`${name} is nearby!`, "ESP Box drawn on Mob.", 5);
-                    lastNotification++;
+                    if (Settings.useEssentialsNotifications) {
+                        essentialsNotification(`${name} is nearby!`, "Box drawn on Mob.", 5);
+                        lastNotification++;
+                    }
                 }
             }
         }
