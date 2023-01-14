@@ -20,6 +20,7 @@ export const isValidDamageEntity = (entity) => {
 
     if (!isNaN(Number(entityName))) return true; // Non Crits
     if (entityName.includes("✧")) return true; // Crits
+    if(entityName.includes("☄")) return true // Vood Doll
     if (entityName.includes("§2")) return true; // Venomous Damage
     if (entityName.includes("§6") && isNaN(Number(entityName.replaceAll(",", "")))) return true; // Fire Aspect Damage
     if (entityName.includes("§7")) return true; // True Damage

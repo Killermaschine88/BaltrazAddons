@@ -5,6 +5,7 @@ import Settings from "../../constants/settings";
 import { getDamageScale, isValidDamageEntity } from "../../functions/features/misc/damageRenderUtils";
 
 let damageText = [];
+let clearCount = 0;
 const customDamageTypes = ["Small", "Normal", "Big", "Custom", "Hidden"];
 
 register("renderEntity", (entity, pos, idk, event) => {
@@ -58,4 +59,10 @@ register("step", () => {
             damageText.splice(damageText.indexOf(dmg), 1);
         }
     });
+
+    clearCount++;
+    if(clearCount >= 2) {
+        damageText = [];
+        clearCount = 0;
+    }
 }).setDelay(1);
