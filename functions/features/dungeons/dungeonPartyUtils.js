@@ -24,7 +24,7 @@ export const getDungeonRunsDone = (userData, masterMode) => {
     return str;
 };
 
-export const getItemInfo = (inventoryData) => {
+export const getDungeonItemInfo = (inventoryData) => {
     let hasHyperion = false;
     let hasTerminator = false;
     let progress = 0;
@@ -35,8 +35,8 @@ export const getItemInfo = (inventoryData) => {
             progress: "&cAPI Disabled",
         };
 
-    const bytearray = java.util.Base64.getDecoder().decode(inventoryData);
-    const inputstream = new java.io.ByteArrayInputStream(bytearray);
+    const bytearray = Java.util.Base64.getDecoder().decode(inventoryData);
+    const inputstream = new Java.io.ByteArrayInputStream(bytearray);
     let nbt = net.minecraft.nbt.CompressedStreamTools.func_74796_a(inputstream); // readCompressed
     nbt = `${nbt}`;
 
@@ -56,7 +56,7 @@ export const getItemInfo = (inventoryData) => {
     };
 };
 
-export const getMiscInfo = (userData, secrets = 0) => {
+export const getMiscDungeonIfno = (userData, secrets = 0) => {
     const completedDungeonRuns = Object.values(userData.dungeons.dungeon_types.catacombs.tier_completions).reduce((a, b) => a + b, 0);
     const completedMastermodeRuns = Object.values(userData.dungeons.dungeon_types.master_catacombs.tier_completions).reduce((a, b) => a + b, 0);
     const totalCompletedRuns = completedDungeonRuns + completedMastermodeRuns;

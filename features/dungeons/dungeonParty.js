@@ -4,7 +4,7 @@
 import Settings from "../../constants/settings";
 import { getHypixelPlayerData, getSkyblockPlayerData, getUUID } from "../../functions/api";
 import { getRank } from "../../functions/functions";
-import { getDungeonRunsDone, getItemInfo, getMiscInfo } from "../../functions/features/dungeons/dungeonPartyUtils";
+import { getDungeonRunsDone, getDungeonItemInfo, getMiscDungeonIfno } from "../../functions/features/dungeons/dungeonPartyUtils";
 import { getLevelByXp } from "../../functions/levels";
 import { missingAPIKeyError, sendError } from "../../functions/errors";
 import { prefix } from "../../constants/variables";
@@ -27,9 +27,9 @@ register("chat", (name, selectedClass, classLevel, event) => {
     }
 
     // Chat Utilities
-    if (Settings.partyPlayerInfo) {
+    if (Settings.dungeonPlayerInfo) {
         if (!Settings.apiKey) {
-            return missingAPIKeyError("Party Player Info");
+            return missingAPIKeyError("Dungeon Party Player Info");
         }
 
         getUUID(name)
@@ -46,7 +46,7 @@ register("chat", (name, selectedClass, classLevel, event) => {
                                 const profile = res.profiles.find((profile) => profile.selected);
                                 const userData = profile.members[uuid];
                                 const dungeonLevel = getLevelByXp(userData.dungeons.dungeon_types.catacombs.experience)?.level;
-                                const itemInfo = getItemInfo(userData?.inv_contents?.data);
+                                const itemInfo = getDungeonItemInfo(userData?.inv_contents?.data);
 
                                 new Message(
                                     new TextComponent(`${prefix} &7Dungeon Info &6${rank} ${name} &7(&bC${dungeonLevel}&7, &b${dungeonClasses[selectedClass]}${classLevel}&7) `).setClick("run_command", `/pv ${name}`).setHover("show_text", "&7Check the NEU Profile Viewer for more info!"),
@@ -54,7 +54,7 @@ register("chat", (name, selectedClass, classLevel, event) => {
                                     new TextComponent(`${prefix} &c[Dungeons] `).setHover("show_text", `${getDungeonRunsDone(userData, false)}`),
                                     new TextComponent("&4[Master Mode] ").setHover("show_text", `${getDungeonRunsDone(userData, true)}`),
                                     new TextComponent(`&d[Items (${itemInfo.progress}&d)] `).setHover("show_text", `${itemInfo.string}`),
-                                    new TextComponent("&5[Misc Info]").setHover("show_text", `${getMiscInfo(userData, secrets)}`)
+                                    new TextComponent("&5[Misc Info]").setHover("show_text", `${getMiscDungeonIfno(userData, secrets)}`)
                                 ).chat();
                             })
                             .catch((err) => {
