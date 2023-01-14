@@ -241,6 +241,14 @@ class Settings {
     })
     showHecatombLevel = false;
 
+    @SwitchProperty({
+        name: "Snake Minigame Helper",
+        description: "Allows you to use the WASD keys to control the snake in the Abiphone.\nDefaults to §cDisabled§r.",
+        category: "Misc",
+        subcategory: "QOL",
+    })
+    snakeMinigameHelper = false;
+
     // -------------------------------------------------------
     /*                         Config                       */
     // -------------------------------------------------------
