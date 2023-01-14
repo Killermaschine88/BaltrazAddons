@@ -13,6 +13,7 @@ import "./features/crimsonIsles/kuudraPartyInfo";
 import "./features/misc/damageRenderer";
 import "./features/misc/loreRenderer";
 import "./features/misc/snakeMinigameHelper";
+import "./features/misc/trackTrapperMobs";
 
 /* Data Loader */
 import "./constants/dataLoader";

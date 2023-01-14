@@ -225,7 +225,7 @@ class Settings {
     })
     maxDamageRenderDistance = 10;
 
-    //
+    // Item Lore
     @SwitchProperty({
         name: "Show Champion Level",
         description: `Show the current Champion Level in the Item Lore. ${defaultMessage("&cFalse")}`,
@@ -242,6 +242,7 @@ class Settings {
     })
     showHecatombLevel = false;
 
+    // Misc QOl
     @SwitchProperty({
         name: "Snake Minigame Helper",
         description: `Allows you to use the WASD keys to control the snake in the Abiphone. ${defaultMessage("&cFalse")}`,
@@ -249,6 +250,14 @@ class Settings {
         subcategory: "Misc QOL",
     })
     snakeMinigameHelper = false;
+
+    @SwitchProperty({
+        name: "Tracker Trapper Mobs",
+        description: `Draw an Box around Trapper mobs when they are in your view distance. ${defaultMessage("&cFalse")}`,
+        category: "Misc",
+        subcategory: "Misc QOL",
+    })
+    trackTrapperMobs = false;
 
     // -------------------------------------------------------
     /*                         Config                       */
@@ -268,5 +277,13 @@ class Settings {
         subcategory: "Config",
     })
     logErrorsToChat = false;
+
+    @SwitchProperty({
+        name: "Public Release",
+        description: `If the release is Public or not. ${defaultMessage("&cTrue")}`,
+        category: "Config",
+        subcategory: "Config",
+    })
+    isPublicRelease = true;
 }
 export default new Settings();

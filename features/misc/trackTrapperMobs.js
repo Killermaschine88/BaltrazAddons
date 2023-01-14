@@ -8,11 +8,12 @@ import RenderLib from "RenderLib";
 let lastNotification = 0;
 
 register("renderWorld", () => {
-    if (!Settings.mobHitboxes) return;
+    if (!Settings.trackTrapperMobs) return;
 
     if (lastNotification !== 0) {
         lastNotification++;
-        if (lastNotification > 10000) lastNotification = 0;
+        ChatLib.chat("added +1")
+        if (lastNotification > 5000) lastNotification = 0;
     }
 
     World.getAllEntitiesOfType(net.minecraft.entity.item.EntityArmorStand).forEach((entity) => {
@@ -21,7 +22,7 @@ register("renderWorld", () => {
         name = name.removeFormatting();
         let existedTicks = entity.getTicksExisted();
 
-        if (name.includes("Vanquisher") || name.includes("[Lv400] Thunder") || name.includes("[Lv600] Lord Jawbus")) {
+        if (name.includes("Trackable") || name.includes("Untrackable") || name.includes("Undetecteable") || name.includes("Endangered") || name.includes("Elusive")) {
             if (existedTicks >= 10) {
                 RenderLib.drawEspBox(entity.getX(), entity.getY(), entity.getZ(), 2, 2, 1, 0, 0, 1, Settings.isPublicRelease ? false : true);
                 if (lastNotification === 0) {
