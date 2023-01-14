@@ -16,6 +16,7 @@ import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProp
             "QOL",
             // Crimson Isles
             "Hitboxes",
+            "Kuudra",
             // Misc
             "Damage Render",
             "Item Lore",
@@ -144,12 +145,12 @@ class Settings {
 
     // Party QOL
     @SwitchProperty({
-        name: "Player Info",
+        name: "Dungeon Player Info",
         description: "Show Info of the Player tha joins your party in chat with Utility Commands &c(Requires API Key)",
         category: "Dungeons",
         subcategory: "QOL",
     })
-    partyPlayerInfo = false;
+    dungeonPlayerInfo = false;
 
     // -------------------------------------------------------
     /*                  Crimson Isles Stuff                 */
@@ -162,6 +163,15 @@ class Settings {
         subcategory: "Hitboxes",
     })
     mobHitboxes = false;
+
+    // Kuudra
+    @SwitchProperty({
+        name: "Kuudra Player Info",
+        description: "Show Info of the Player tha joins your party in chat with Utility Commands &c(Requires API Key)",
+        category: "Crimson Isles",
+        subcategory: "Kuudra",
+    })
+    kuudraPlayerInfo = false;
 
     // -------------------------------------------------------
     /*                          Misc                        */
