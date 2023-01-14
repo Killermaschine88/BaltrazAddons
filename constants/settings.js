@@ -34,11 +34,10 @@ class Settings {
         this.initialize(this);
 
         /* Categories */
-        //this.setCategoryDescription("General", "&aCreated by Baltraz");
-        this.setCategoryDescription("Dungeons", "&aCreated by Baltraz");
-        this.setCategoryDescription("Crimson Isles", "&aCreated by Baltraz");
-        this.setCategoryDescription("Misc", "&aCreated by Baltraz");
-        this.setCategoryDescription("Config", "&aCreated by Baltraz");
+        this.setCategoryDescription("Dungeons", "&cCreated by Baltraz");
+        this.setCategoryDescription("Crimson Isles", "&cCreated by Baltraz");
+        this.setCategoryDescription("Misc", "&cCreated by Baltraz");
+        this.setCategoryDescription("Config", "&cCreated by Baltraz");
 
         /* Dependencies */
         // Party Auto Party Kicker
@@ -65,7 +64,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Healer Level",
-        description: `Set the minimum Healer Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
+        description: `Set the minimum Healer Level the Player needs to be to not get kicked. ${defaultMessage("&c0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -83,7 +82,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Mage Level",
-        description: `Set the minimum Mage Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
+        description: `Set the minimum Mage Level the Player needs to be to not get kicked. ${defaultMessage("&c0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -101,7 +100,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Berserker Level",
-        description: `Set the minimum Berserker Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
+        description: `Set the minimum Berserker Level the Player needs to be to not get kicked. ${defaultMessage("&c0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -119,7 +118,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Archer Level",
-        description: `Set the minimum Archer Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
+        description: `Set the minimum Archer Level the Player needs to be to not get kicked. ${defaultMessage("&c0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -137,7 +136,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Tank Level",
-        description: `Set the minimum Tank Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
+        description: `Set the minimum Tank Level the Player needs to be to not get kicked. ${defaultMessage("&c0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -189,7 +188,7 @@ class Settings {
 
     @SelectorProperty({
         name: "Custom Damage Type",
-        description: `Size of the custom Damage Render. ${defaultMessage("&aNormal")}`,
+        description: `Size of the custom Damage Render. ${defaultMessage("&cNormal")}`,
         category: "Misc",
         subcategory: "Damage Render",
         options: ["Small", "Normal", "Big", "Custom", "Hidden"],
@@ -198,7 +197,7 @@ class Settings {
 
     @SliderProperty({
         name: "Custom Damage Scale",
-        description: `Sets the custom scale of the Damage Render. ${defaultMessage("&a50")}`,
+        description: `Sets the custom scale of the Damage Render. ${defaultMessage("&c50")}`,
         category: "Misc",
         subcategory: "Damage Render",
         min: 1,
@@ -208,7 +207,7 @@ class Settings {
 
     @SliderProperty({
         name: "Custom Damage Render Amount",
-        description: `Sets the amount of Damage Renders that can be displayed at once. ${defaultMessage("&a20")}`,
+        description: `Sets the amount of Damage Renders that can be displayed at once. ${defaultMessage("&c20")}`,
         category: "Misc",
         subcategory: "Damage Render",
         min: 1,
@@ -218,7 +217,7 @@ class Settings {
 
     @SliderProperty({
         name: "Custom Damage Render Distance",
-        description: `Estimate of the max distance the Damage Render can be displayed. ${defaultMessage("&a10")}`,
+        description: `Estimate of the max distance the Damage Render can be displayed. ${defaultMessage("&c10")}`,
         category: "Misc",
         subcategory: "Damage Render",
         min: 1,
