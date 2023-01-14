@@ -12,7 +12,7 @@ register("renderWorld", () => {
 
     if (lastNotification !== 0) {
         lastNotification++;
-        if (lastNotification > 200) lastNotification = 0;
+        if (lastNotification > 10000) lastNotification = 0;
     }
 
     World.getAllEntitiesOfType(net.minecraft.entity.item.EntityArmorStand).forEach((entity) => {
