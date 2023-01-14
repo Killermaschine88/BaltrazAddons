@@ -13,15 +13,16 @@ export const getDamageScale = (type) => {
 };
 
 export const isValidDamageEntity = (entity) => {
-    if (entity.getName().includes("§8[")) return false; // Ignoring Mob Nametags
-    if (entity.getName().includes(" ")) return false; // Ignoring Stuff with Spaces as DMG ArmorStands don't have spaces
+    const entityName = entity.getName();
+    if (entityName.includes("§8[")) return false; // Ignoring Mob Nametags
+    if (entityName.includes(" ")) return false; // Ignoring Stuff with Spaces as DMG ArmorStands don't have spaces
 
-    if (!isNaN(Number(entity.getName()))) return true; // Non Crits
-    if (entity.getName().includes("✧")) return true; // Crits
-    if (entity.getName().includes("§2")) return true; // Venomous Damage
-    if (entity.getName().includes("§6") && !isNaN(entity.getName())) return true; // Fire Aspect Damage
-    if (entity.getName().includes("§7")) return true; // True Damage
-    if (entity.getName().includes("§9") && !entity.getName().includes("✦")) return true; // IDFK what this damage type is but it exists
+    if (!isNaN(Number(entityName))) return true; // Non Crits
+    if (entityName.includes("✧")) return true; // Crits
+    if (entityName.includes("§2")) return true; // Venomous Damage
+    if (entityName.includes("§6") && isNaN(Number(entityName.replace(",", "")))) return true; // Fire Aspect Damage
+    if (entityName.includes("§7")) return true; // True Damage
+    if (entityName.includes("§9") && !entityName.includes("✦")) return true; // IDFK what this damage type is but it exists
 
     // Nothing passed
     return false;
