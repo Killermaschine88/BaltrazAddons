@@ -24,9 +24,9 @@ register("renderWorld", () => {
         if (name.includes("Vanquisher") || name.includes("[Lv400] Thunder") || name.includes("[Lv600] Lord Jawbus")) {
             if (existedTicks >= 10) {
                 RenderLib.drawEspBox(entity.getX(), entity.getY(), entity.getZ(), 2, 2, 1, 0, 0, 1, true);
-                if(lastNotification === 0 ) {
+                if (lastNotification === 0) {
                     essentialsNotification(`${name} is nearby!`, "ESP Box drawn on Mob.", 5);
-                    lastNotification++
+                    lastNotification++;
                 }
             }
         }

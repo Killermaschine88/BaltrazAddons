@@ -61,7 +61,7 @@ register("step", () => {
     });
 
     clearCount++;
-    if(clearCount >= 2) {
+    if (clearCount >= 2) {
         damageText = [];
         clearCount = 0;
     }

@@ -2,6 +2,7 @@
 /// <reference lib="es2015" />
 
 import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProperty, @SelectorProperty, @DecimalSliderProperty, Color } from 'Vigilance';
+import { defaultMessage } from "../functions/util";
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
@@ -13,15 +14,16 @@ import { @Vigilant, @SwitchProperty, @SliderProperty, @TextProperty, @ButtonProp
         const subcategories = [
             // Dungeons
             "Auto Party Kicker",
-            "QOL",
+            "Dungeon QOL",
             // Crimson Isles
             "Hitboxes",
             "Kuudra",
             // Misc
             "Damage Render",
             "Item Lore",
+            "Misc QOL",
             // Config
-            "Config"
+            "Config",
         ];
 
         return subcategories.indexOf(a.getValue()[0].attributesExt.subcategory) - subcategories.indexOf(b.getValue()[0].attributesExt.subcategory);
@@ -55,7 +57,7 @@ class Settings {
     // Auto Party Kicker
     @SwitchProperty({
         name: "Auto Kick Healer",
-        description: "Kick Healers as soon as they join",
+        description: `Kick Healers as soon as they join. ${defaultMessage("&cFalse")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
     })
@@ -63,7 +65,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Healer Level",
-        description: "Set the minimum Healer Level the Player needs to be to not get kicked (Default 0)",
+        description: `Set the minimum Healer Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -73,7 +75,7 @@ class Settings {
 
     @SwitchProperty({
         name: "Auto Kick Mage",
-        description: "Kick Mages as soon as they join",
+        description: `Kick Mages as soon as they join. ${defaultMessage("&cFalse")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
     })
@@ -81,7 +83,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Mage Level",
-        description: "Set the minimum Mage Level the Player needs to be to not get kicked (Default 0)",
+        description: `Set the minimum Mage Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -91,7 +93,7 @@ class Settings {
 
     @SwitchProperty({
         name: "Auto Kick Berserker",
-        description: "Kick Berserkers as soon as they join",
+        description: `Kick Berserkers as soon as they join. ${defaultMessage("&cFalse")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
     })
@@ -99,7 +101,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Berserker Level",
-        description: "Set the minimum Berserker Level the Player needs to be to not get kicked (Default 0)",
+        description: `Set the minimum Berserker Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -109,7 +111,7 @@ class Settings {
 
     @SwitchProperty({
         name: "Auto Kick Archer",
-        description: "Kick Archers as soon as they join",
+        description: `Kick Archers as soon as they join. ${defaultMessage("&cFalse")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
     })
@@ -117,7 +119,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Archer Level",
-        description: "Set the minimum Archer Level the Player needs to be to not get kicked (Default 0)",
+        description: `Set the minimum Archer Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -127,7 +129,7 @@ class Settings {
 
     @SwitchProperty({
         name: "Auto Kick Tank",
-        description: "Kick Tanks as soon as they join",
+        description: `Kick Tanks as soon as they join. ${defaultMessage("&cFalse")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
     })
@@ -135,7 +137,7 @@ class Settings {
 
     @SliderProperty({
         name: "Minimum Tank Level",
-        description: "Set the minimum Tank Level the Player needs to be to not get kicked (Default 0)",
+        description: `Set the minimum Tank Level the Player needs to be to not get kicked. ${defaultMessage("&a0")}`,
         category: "Dungeons",
         subcategory: "Auto Party Kicker",
         min: 0,
@@ -146,9 +148,9 @@ class Settings {
     // Party QOL
     @SwitchProperty({
         name: "Dungeon Player Info",
-        description: "Show Info of the Player tha joins your party in chat with Utility Commands &c(Requires API Key)",
+        description: `Show Info of the Player tha joins your party in chat with Utility Commands &c(Requires API Key) ${defaultMessage("&cFalse")}`,
         category: "Dungeons",
-        subcategory: "QOL",
+        subcategory: "Dungeon QOL",
     })
     dungeonPlayerInfo = false;
 
@@ -158,7 +160,7 @@ class Settings {
     // Mob Hitboxes
     @SwitchProperty({
         name: "Mob Hitboxes (FPS Heavy Kinda)",
-        description: "Draw a Box around Vanquishers, Thunders and Jawbusses",
+        description: `Draw a Box around Vanquishers, Thunders and Jawbusses. ${defaultMessage("&cFalse")}`,
         category: "Crimson Isles",
         subcategory: "Hitboxes",
     })
@@ -167,7 +169,7 @@ class Settings {
     // Kuudra
     @SwitchProperty({
         name: "Kuudra Player Info",
-        description: "Show Info of the Player tha joins your party in chat with Utility Commands &c(Requires API Key)",
+        description: `Show Info of the Player tha joins your party in chat with Utility Commands. &c(Requires API Key) ${defaultMessage("&cFalse")}`,
         category: "Crimson Isles",
         subcategory: "Kuudra",
     })
@@ -179,7 +181,7 @@ class Settings {
     // Damage Render
     @SwitchProperty({
         name: "Custom Damage Render",
-        description: "Displays a custom Damage Render. If this is Disabled the module will not modify the Damage Splash.\nDefaults to §cDisabled§r.",
+        description: `Displays a custom Damage Render. If this is Disabled the module will not modify the Damage Splash. ${defaultMessage("&cFalse")}`,
         category: "Misc",
         subcategory: "Damage Render",
     })
@@ -187,7 +189,7 @@ class Settings {
 
     @SelectorProperty({
         name: "Custom Damage Type",
-        description: "Size of the custom Damage Render.\nDefaults to §cNormal§r.",
+        description: `Size of the custom Damage Render. ${defaultMessage("&aNormal")}`,
         category: "Misc",
         subcategory: "Damage Render",
         options: ["Small", "Normal", "Big", "Custom", "Hidden"],
@@ -196,7 +198,7 @@ class Settings {
 
     @SliderProperty({
         name: "Custom Damage Scale",
-        description: "Sets the custom scale of the Damage Render.\nDefaults to 50 (Default Hypixel Size Prolly)",
+        description: `Sets the custom scale of the Damage Render. ${defaultMessage("&a50")}`,
         category: "Misc",
         subcategory: "Damage Render",
         min: 1,
@@ -206,7 +208,7 @@ class Settings {
 
     @SliderProperty({
         name: "Custom Damage Render Amount",
-        description: "Sets the amount of Damage Renders that can be displayed at once.\nDefaults to 20",
+        description: `Sets the amount of Damage Renders that can be displayed at once. ${defaultMessage("&a20")}`,
         category: "Misc",
         subcategory: "Damage Render",
         min: 1,
@@ -216,7 +218,7 @@ class Settings {
 
     @SliderProperty({
         name: "Custom Damage Render Distance",
-        description: "Estimate of the max distance the Damage Render can be displayed.\nDefaults to 10",
+        description: `Estimate of the max distance the Damage Render can be displayed. ${defaultMessage("&a10")}`,
         category: "Misc",
         subcategory: "Damage Render",
         min: 1,
@@ -224,10 +226,10 @@ class Settings {
     })
     maxDamageRenderDistance = 10;
 
-    // 
+    //
     @SwitchProperty({
         name: "Show Champion Level",
-        description: "Show the current Champion Level in the Item Lore",
+        description: `Show the current Champion Level in the Item Lore. ${defaultMessage("&cFalse")}`,
         category: "Misc",
         subcategory: "Item Lore",
     })
@@ -235,7 +237,7 @@ class Settings {
 
     @SwitchProperty({
         name: "Show Hecatomb Level",
-        description: "Show the current Hecatomb Level in the Item Lore",
+        description: `Show the current Hecatomb Level in the Item Lore. ${defaultMessage("&cFalse")}`,
         category: "Misc",
         subcategory: "Item Lore",
     })
@@ -243,9 +245,9 @@ class Settings {
 
     @SwitchProperty({
         name: "Snake Minigame Helper",
-        description: "Allows you to use the WASD keys to control the snake in the Abiphone.\nDefaults to §cDisabled§r.",
+        description: `Allows you to use the WASD keys to control the snake in the Abiphone. ${defaultMessage("&cFalse")}`,
         category: "Misc",
-        subcategory: "QOL",
+        subcategory: "Misc QOL",
     })
     snakeMinigameHelper = false;
 
@@ -262,7 +264,7 @@ class Settings {
 
     @SwitchProperty({
         name: "Log Errors",
-        description: "If Errors should be logged into Chat",
+        description: `If Errors should be logged into Chat. ${defaultMessage("&cFalse")}`,
         category: "Config",
         subcategory: "Config",
     })

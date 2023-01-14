@@ -7,7 +7,7 @@ import "./features/dungeons/dungeonPartyInfo";
 
 // Crimson Isles
 import "./features/crimsonIsles/mobHitboxes";
-import "./features/crimsonIsles/kuudraPartyInfo"
+import "./features/crimsonIsles/kuudraPartyInfo";
 
 // Misc
 import "./features/misc/damageRenderer";

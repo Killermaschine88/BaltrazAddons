@@ -3,7 +3,6 @@ import Settings from "../../constants/settings";
 let firstTime = true;
 let inSnake = false;
 
-
 register("postGuiRender", (gui) => {
     if (!Settings.snakeMinigameHelper) return;
     if (Player.getOpenedInventory()?.toString()?.includes("Snake")) {
@@ -22,11 +21,11 @@ register("guiClosed", (gui) => {
 });
 
 register("guiKey", (char, code, gui, event) => {
-    char = `${char}` // fix ct bug
+    char = `${char}`; // fix ct bug
     if (inSnake == true) {
         const keys = { a: 50, w: 51, d: 52, s: 53 };
-        const invSlot = keys[char]
-        if(!invSlot) return;
+        const invSlot = keys[char];
+        if (!invSlot) return;
         Player.getContainer().click(invSlot);
     }
-  })
+});

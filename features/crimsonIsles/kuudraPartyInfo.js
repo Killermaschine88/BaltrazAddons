@@ -8,7 +8,6 @@ import { missingAPIKeyError, sendError } from "../../functions/errors";
 import { prefix } from "../../constants/variables";
 
 register("chat", (name, combatLevel, event) => {
-
     // Chat Utilities
     if (Settings.kuudraPlayerInfo) {
         if (!Settings.apiKey) {

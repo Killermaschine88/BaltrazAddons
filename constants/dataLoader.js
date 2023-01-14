@@ -19,7 +19,6 @@ class DataLoader {
             this.isInSkyblock = Scoreboard.getTitle()?.removeFormatting()?.includes("SKYBLOCK");
             this.currentWorld = worldName;
         }).setCriteria('{"server":"${server}","gametype":"SKYBLOCK","mode":"${mode}","map":"${worldName}"}');
-
     }
 
     // Methods

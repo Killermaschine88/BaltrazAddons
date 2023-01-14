@@ -19,3 +19,7 @@ export const formatNumber = (number, format = "comma") => {
         return parts.join(".");
     }
 };
+
+export const defaultMessage = (defaultValue) => {
+    return `\n&7Defaults to ${defaultValue}`;
+};

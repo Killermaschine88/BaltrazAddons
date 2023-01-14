@@ -2,8 +2,8 @@
 /// <reference lib="es2015" />
 
 export const getMiscKuudraInfo = (userData) => {
-    return "&7WIP"
-}
+    return "&7WIP";
+};
 
 export const getKuudraItemInfo = (inventoryData) => {
     let hasHyperion = false;
@@ -32,7 +32,7 @@ export const getKuudraItemInfo = (inventoryData) => {
     }
 
     return {
-        string : `&7Hyperion: ${hasHyperion ? "&aYes" : "&cNo"}\n&7Terminator: ${hasTerminator ? "&aYes" : "&cNo"}`,
-        progress : `${progress}/2`,
-    }
-}
+        string: `&7Hyperion: ${hasHyperion ? "&aYes" : "&cNo"}\n&7Terminator: ${hasTerminator ? "&aYes" : "&cNo"}`,
+        progress: `${progress}/2`,
+    };
+};
