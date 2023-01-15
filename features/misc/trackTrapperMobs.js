@@ -2,13 +2,15 @@
 /// <reference lib="es2015" />
 
 import Settings from "../../constants/settings";
-import { essentialsNotification } from "../../functions/essentials";
 import RenderLib from "RenderLib";
+import { essentialsNotification } from "../../functions/essentials";
+import { playerData } from "../../constants/dataLoader";
 
 let lastNotification = 0;
 
 register("renderWorld", () => {
     if (!Settings.trackTrapperMobs) return;
+    if(playerData.currentWorld !== "The Farming Islands") return;
 
     if (lastNotification !== 0) {
         lastNotification++;
@@ -21,8 +23,6 @@ register("renderWorld", () => {
 
         name = name.removeFormatting();
         let existedTicks = entity.getTicksExisted();
-
-        //ChatLib.chat(JSON.stringify(entity.getEntity().func_174819_aU()))
 
         if (name.includes("Trackable") || name.includes("Untrackable") || name.includes("Undetected") || name.includes("Endangered") || name.includes("Elusive")) {
             if (existedTicks >= 10) {
