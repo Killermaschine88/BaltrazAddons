@@ -2,13 +2,15 @@
 /// <reference lib="es2015" />
 
 import Settings from "../../constants/settings";
-import { essentialsNotification } from "../../functions/essentials";
 import RenderLib from "RenderLib";
+import { essentialsNotification } from "../../functions/essentials";
+import { playerData } from "../../constants/dataLoader";
 
 let lastNotification = 0;
 
 register("renderWorld", () => {
     if (!Settings.mobHitboxes) return;
+    if (playerData.currentWorld !== "Crimson Isles") return;
 
     if (lastNotification !== 0) {
         lastNotification++;

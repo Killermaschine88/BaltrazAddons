@@ -29,7 +29,7 @@ register("chat", (name, combatLevel, event) => {
                                 const itemInfo = getKuudraItemInfo(userData?.inv_contents?.data);
 
                                 new Message(
-                                    new TextComponent(`${prefix} &7Kuudra Info &6${rank} ${name} &7(&bC${dungeonLevel}&7, &b${dungeonClasses[selectedClass]}${classLevel}&7) `).setClick("run_command", `/pv ${name}`).setHover("show_text", "&7Check the NEU Profile Viewer for more info!"),
+                                    new TextComponent(`${prefix} &7Kuudra Info &6${rank} ${name} &7(&bC${combatLevel}&7) `).setClick("run_command", `/pv ${name}`).setHover("show_text", "&7Check the NEU Profile Viewer for more info!"),
                                     new TextComponent("&c[Kick]\n").setClick("run_command", `/p kick ${name}`).setHover("show_text", "&7Click to kick this player from the party!"),
                                     new TextComponent(`&d[Items (${itemInfo.progress}&d)] `).setHover("show_text", `${itemInfo.string}`),
                                     new TextComponent("&5[Misc Info]").setHover("show_text", `${getMiscKuudraInfo(userData)}`)
@@ -59,4 +59,4 @@ register("chat", (name, combatLevel, event) => {
                 console.log(err);
             });
     }
-}).setCriteria("Party Finder > ${name} joined the dungeon group! (Combat Level ${combatlevel})");
+}).setCriteria("Party Finder > ${name} joined the group! (Combat Level ${combatlevel})");
