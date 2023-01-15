@@ -29,15 +29,16 @@ import { defaultMessage } from "../functions/util";
         return subcategories.indexOf(a.getValue()[0].attributesExt.subcategory) - subcategories.indexOf(b.getValue()[0].attributesExt.subcategory);
     },
 })
+
 class Settings {
     constructor() {
         this.initialize(this);
 
         /* Categories */
-        this.setCategoryDescription("Dungeons", "&cCreated by Baltraz");
-        this.setCategoryDescription("Crimson Isles", "&cCreated by Baltraz");
-        this.setCategoryDescription("Misc", "&cCreated by Baltraz");
-        this.setCategoryDescription("Config", "&cCreated by Baltraz");
+        this.setCategoryDescription("Dungeons", "&6Created by Baltraz");
+        this.setCategoryDescription("Crimson Isles", "&6Created by Baltraz");
+        this.setCategoryDescription("Misc", "&6Created by Baltraz");
+        this.setCategoryDescription("Config", "&6Created by Baltraz");
 
         /* Dependencies */
         // Party Auto Party Kicker
