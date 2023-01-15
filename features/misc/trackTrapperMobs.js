@@ -16,10 +16,13 @@ register("renderWorld", () => {
     }
 
     World.getAllEntitiesOfType(net.minecraft.entity.item.EntityArmorStand).forEach((entity) => {
+    //World.getAllEntities().forEach((entity) => {
         let name = entity.getName();
 
         name = name.removeFormatting();
-        let existedTicks = entity.getTicksExisted(); 
+        let existedTicks = entity.getTicksExisted();
+
+        //ChatLib.chat(JSON.stringify(entity.getEntity().func_174819_aU()))
 
         if (name.includes("Trackable") || name.includes("Untrackable") || name.includes("Undetected") || name.includes("Endangered") || name.includes("Elusive")) {
             if (existedTicks >= 10) {
