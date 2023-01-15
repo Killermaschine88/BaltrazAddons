@@ -2,3 +2,5 @@ node_modules/
 package-lock.json
 config.toml
 constants/data.json
+features/QoL/petSwapper.js
+features/QoL/minionCollector.json
