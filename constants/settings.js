@@ -31,15 +31,16 @@ import { defaultMessage } from "../functions/util";
         return subcategories.indexOf(a.getValue()[0].attributesExt.subcategory) - subcategories.indexOf(b.getValue()[0].attributesExt.subcategory);
     },
 })
+
 class Settings {
     constructor() {
         this.initialize(this);
 
         /* Categories */
-        this.setCategoryDescription("Dungeons", "&cCreated by Baltraz");
-        this.setCategoryDescription("Crimson Isles", "&cCreated by Baltraz");
-        this.setCategoryDescription("Misc", "&cCreated by Baltraz");
-        this.setCategoryDescription("Config", "&cCreated by Baltraz");
+        this.setCategoryDescription("Dungeons", "&6Created by Baltraz");
+        this.setCategoryDescription("Crimson Isles", "&6Created by Baltraz");
+        this.setCategoryDescription("Misc", "&6Created by Baltraz");
+        this.setCategoryDescription("Config", "&6Created by Baltraz");
 
         /* Dependencies */
         // Party Auto Party Kicker
@@ -273,21 +274,6 @@ class Settings {
     /*                         QOL FEATURES                 */
     // -------------------------------------------------------
 
-    @TextProperty({
-        name: "Pet #1",
-        description: "Which pet to swap to when you press the Pet Swapper #1 keybind.\nWill only work if the pet is on the first page of your pet menu.\nWill swap to the pet closest to the top left of the pet menu.\nChange the keybind in &cControls", 
-        category: "QOL",
-        subcategory: "Pet Swapper",
-    })
-    pet1 = "";
-
-    @TextProperty({
-        name: "Pet #2",
-        description: "Which pet to swap to when you press the Pet Swapper #1 keybind.\nWill only work if the pet is on the first page of your pet menu.\nWill swap to the pet closest to the top left of the pet menu.\nChange the keybind in &cControls", 
-        category: "QOL",
-        subcategory: "Pet Swapper",
-    })
-    pet2 = "";
 
     @SwitchProperty({
         name: "Trade Menu QOL",
@@ -296,14 +282,6 @@ class Settings {
         subcategory: "Misc QOL",
     })
     tradeMenu = false;
-
-    @SwitchProperty({
-        name: "Auto Collect Minions",
-        description: `Automatically collects and closes the minion GUI upon opening it.\n&cNote: &7Sometimes may fail to collect loot. If so open minion again. ${defaultMessage("&cFalse")}`,
-        category: "QOL",
-        subcategory: "Misc QOL",
-    })
-    minionCollector = false;
 
     // -------------------------------------------------------
     /*                         Config                       */

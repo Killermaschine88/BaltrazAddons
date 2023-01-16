@@ -16,8 +16,8 @@ export const getKuudraItemInfo = (inventoryData) => {
             progress: "&cAPI Disabled",
         };
 
-    const bytearray = Java.util.Base64.getDecoder().decode(inventoryData);
-    const inputstream = new Java.io.ByteArrayInputStream(bytearray);
+    const bytearray = java.util.Base64.getDecoder().decode(inventoryData);
+    const inputstream = new java.io.ByteArrayInputStream(bytearray);
     let nbt = net.minecraft.nbt.CompressedStreamTools.func_74796_a(inputstream); // readCompressed
     nbt = `${nbt}`;
 
