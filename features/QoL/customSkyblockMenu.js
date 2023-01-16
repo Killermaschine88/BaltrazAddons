@@ -9,67 +9,47 @@ const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
 const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 const Mc = Client.getMinecraft();
 
-let inv = new InventoryBasic("Custom SkyBlock Menu", true, 54); //creates a basic inventory with custom name nad 54 slots
-let guiChest = new GuiChest(Player.getPlayer().field_71071_by, inv); //makes a chest out of the players inv and then new inventory
-let inCustom 
-register("command", () => {
-    inCustom = true
-    GuiHandler.openGui(guiChest)
-}).setName("custommenu");
 
-register("packetSent", (packet) => {
-    if (packet.includes("C0EPacketClickWindow" && inCustom)) {
-        cancelEvent()
-    }
-})
+
+
 
 let firstTime = true;
-let inMenu = false
-let stepTwo = false
 
 register("postGuiRender", (gui) => {
     if (!Settings.tradeMenu) return;
     if (Player.getContainer()?.toString()?.includes("Custom SkyBlock Menu")) {
-
+        
+        // this is just here as an example for how uuid and texture work
         let uuid = "e780adce-f739-4c15-9e5b-a78562e2c935"
         let texture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNiM2FjZGMxMWNhNzQ3YmY3MTBlNTlmNGM4ZTliM2Q5NDlmZGQzNjRjNjg2OTgzMWNhODc4ZjA3NjNkMTc4NyJ9fX0="
 
         inMenu = true;
-        let inv = Player.getContainer()
-        //inv.container.func_75141_a(35, new Item("emerald").getItemStack().func_151001_c("§aTrades§r"));
-        let trade = inv.getStackInSlot(35)
-        //trade.setLore(["§7View your available trades.", "§7These trades are always", "§7available and accessible through", "§7the SkyBlock Menu.", " ", "§7Trades Unlocked: §a100%", "§2----------------------§e24§6/§e24", " ", "§eClick to view!"])
-        skullInSlot(26, "§aQuiver§r", ["§7A masterfully crafted Quiver", "§7which holds any kind of", "§7projectile you can think of!", "", "§eClick to open!"], uuid, texture)
+        let inv = Player.getContainer() // cleans up some stuff
+        //leave this here so i can make a createItemAtSlot function ///////  inv.container.func_75141_a(35, new Item("emerald").getItemStack().func_151001_c("§aTrades§r"));
+        //leave this here so i can make a createItemAtSlot function ////// trade.setLore(["§7View your available trades.", "§7These trades are always", "§7available and accessible through", "§7the SkyBlock Menu.", " ", "§7Trades Unlocked: §a100%", "§2----------------------§e24§6/§e24", " ", "§eClick to view!"])
         for (i = 0; i <= 54; i++) {
             skullInSlot(i, "§aQuiver§r", ["§7A masterfully crafted Quiver", "§7which holds any kind of", "§7projectile you can think of!", "", "§eClick to open!"], uuid, texture)  
         }
     }
-    if (Player.getContainer()?.toString()?.includes("Recipe Book")) {
-        if (stepTwo) { 
-            Player.getContainer().click(50)
-        }
-    }
-
-
 });
 
-register("guiMouseClick", () => {
-    if (inMenu) {
-        let slot = Client.currentGui.get().getSlotUnderMouse().field_75222_d
-        if (slot === 35) {
-            Player.getContainer().click(21)
-            stepTwo = true
-        }
+let inv = new InventoryBasic("Custom SkyBlock Menu", true, 54); //creates a basic inventory with custom name nad 54 slots (cakend gave this code w let so idk)
+let guiChest = new GuiChest(Player.getPlayer().field_71071_by, inv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
+let inCustom /// this is for the packet cancelling
+register("command", () => {
+    inCustom = true
+    GuiHandler.openGui(guiChest) // opens the gui
+}).setName("custommenu");
+
+register("packetSent", (packet) => {
+    if (packet.includes("C0EPacketClickWindow" && inCustom)) { // this should cancel all window clicking packets sent when you are in custom menu
+        cancelEvent()
     }
-});
+})
 
 register("guiClosed", (gui) => {
-    if (firstTime == false) {
-        firstTime = true;
-        inMenu = false;
-    }
     if (inCustom) {
-        inCustom = false;
+        inCustom = false; // this should make it stop cancelling packets when you leave custom menu
     }
 });
 
@@ -107,6 +87,9 @@ function skullInSlot(slot, name, lore, uuid, texture) {
 
 }
 
+
+// this creates a new console that logs packets to it you can access it with /packetlogger to add stuff to console do c.println("balls")
+
 const con = com.chattriggers.ctjs.utils.console.Console;
 const c = new con(null);
 
@@ -121,10 +104,3 @@ register("packetSent", (packet) => {
         c.println(packet.toString())
     }
 })
-/*
-register('packetSent', (packet, event) => {
-    if (!packet.toString().startsWith("net.minecraft.network.play.client.C02PacketUseEntity")) return;
-    ChatLib.chat(packet.func_149564_a(World.getWorld()));
-    ChatLib.chat(packet.func_149565_c());
-});
-*/
