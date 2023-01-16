@@ -6,7 +6,7 @@ import { defaultMessage } from "../functions/util";
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["Dungeons", "Crimson Isles", "Misc", "Config"];
+        const categories = ["Dungeons", "Crimson Isles", "Misc", "SkyBlock Menu", "Config"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
@@ -22,6 +22,8 @@ import { defaultMessage } from "../functions/util";
             "Damage Render",
             "Item Lore",
             "Misc QOL",
+            // Skyblock Menu
+            "rename me"
             // Config
             "Config",
         ];
@@ -259,6 +261,19 @@ class Settings {
         subcategory: "Misc QOL",
     })
     trackTrapperMobs = false;
+
+    // -------------------------------------------------------
+    /*              Custom Skyblock Menu Stuff              */
+    // -------------------------------------------------------
+    // Enable Module
+    @SwitchProperty({
+        name: "Custom Skyblock Menu (dev)",
+        description: `Replaces the default menu with a fully customizable one. ${defaultMessage("&cFalse")}`,
+        category: "SkyBlock Menu",
+        subcategory: "rename me",
+    })
+    skyblockMenu = false;
+
 
     // -------------------------------------------------------
     /*                         Config                       */

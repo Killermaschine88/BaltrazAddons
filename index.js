@@ -17,3 +17,6 @@ import "./features/misc/trackTrapperMobs";
 
 /* Data Loader */
 import "./constants/dataLoader";
+
+/* Custom Skyblock Menu */
+import "./features/customSkyblockMenu/main";
