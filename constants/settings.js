@@ -265,14 +265,55 @@ class Settings {
     // -------------------------------------------------------
     /*              Custom Skyblock Menu Stuff              */
     // -------------------------------------------------------
-    // Enable Module
+    // Custom Menu Toggle
     @SwitchProperty({
-        name: "Custom Skyblock Menu (DEV)",
+        name: "Custom SkyBlock Menu (DEV)",
         description: `Replaces the default Skyblock Menu with a fully customizable one. ${defaultMessage("&cFalse")}`,
         category: "Custom SkyBlock Menu",
         subcategory: "Custom Skyblock Menu",
     })
     customSkyblockMenu = false;
+
+    // Custom Commands
+    @TextProperty({
+        name: "Custom Menu Command #1",
+        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Commands",
+    })
+    customMenuCommand1 = "";
+
+    @TextProperty({
+        name: "Custom Menu Command #2",
+        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Commands",
+    })
+    customMenuCommand2 = "";
+
+    @TextProperty({
+        name: "Custom Menu Command #3",
+        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Commands",
+    })
+    customMenuCommand3 = "";
+
+    @TextProperty({
+        name: "Custom Menu Command #4",
+        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Commands",
+    })
+    customMenuCommand4 = "";
+
+    @TextProperty({
+        name: "Custom Menu Command #5",
+        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Commands",
+    })
+    customMenuCommand5 = "";
 
 
     // -------------------------------------------------------
