@@ -8,18 +8,20 @@ const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
 const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 const Mc = Client.getMinecraft();
 
-let firstTimeMenu = true; // optimization!!!
-let generatedMenu = false; // optimization!!!
-let firstTimeItem = true; // optimization!!!
-let generatedItem = false; // optimization!!!
+let firstTimeMenu = true;
+let generatedMenu = false;
+let firstTimeItem = true;
+let generatedItem = false;
 
-// custom menu GUI
-let menuInv = new InventoryBasic("§cCustom SkyBlock Menu§r", true, 54); //creates a basic inventory with custom name and 54 slots (cakend gave this code w let so idk)
-let menuGui = new GuiChest(Player.getPlayer().field_71071_by, menuInv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
+// Creating Custom Skyblock Menu GUI
+// field_71071_by => inventory
+let menuInv = new InventoryBasic("§7Custom SkyBlock Menu§r", true, 54);
+let menuGui = new GuiChest(Player.getPlayer().field_71071_by, menuInv);
 
-// item selector GUI
-let itemInv = new InventoryBasic("§cButton Picker§r", true, 54); //creates a basic inventory with custom name and 54 slots (cakend gave this code w let so idk)
-let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
+// Creating Custom Item Selector GUI
+// field_71071_by => inventory
+let itemInv = new InventoryBasic("§7Custom SkyBlock Menu Button Picker§r", true, 54);
+let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv);
 
 register("postGuiRender", (gui) => {
     if (!Settings.skyblockMenu) return;
@@ -35,7 +37,7 @@ register("postGuiRender", (gui) => {
         }
     }
 
-    //////////////////////////// ITEM SELECTOR ////////////////////////////
+    /*                          Custom Item Selector                            */
     if (Player.getContainer()?.toString()?.includes("§cButton Picker§r")) {
         console.log(JSON.stringify(Player?.getContainer()?.getStackInSlot(0)?.getLore()));
         if (firstTimeItem && !generatedItem) {
