@@ -23,7 +23,7 @@ let itemInv = new InventoryBasic("§7Custom SkyBlock Menu Button Picker§r", tru
 let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv);
 
 register("postGuiRender", (gui) => {
-    if (!Settings.skyblockMenu) return;
+    if (!Settings.customSkyblockMenu) return;
 
     /*                          Custom Skyblock Menu                        */
     if (Player.getContainer()?.toString()?.includes("Custom SkyBlock Menu")) {
@@ -53,9 +53,7 @@ register("command", () => {
 }).setName("test");
 
 register("itemTooltip", (lore, item, event) => {
-    if (item.getName().equals("")) {
-        cancel(event);
-    }
+    if (item.getName().includes("Empty Slot") && Settings.hiddenCustomItemTooltip) return cancel(event);
 });
 
 // examples of ways to do stuff
