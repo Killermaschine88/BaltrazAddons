@@ -267,12 +267,12 @@ class Settings {
     // -------------------------------------------------------
     // Enable Module
     @SwitchProperty({
-        name: "Custom Skyblock Menu (dev)",
-        description: `Replaces the default menu with a fully customizable one. ${defaultMessage("&cFalse")}`,
-        category: "SkyBlock Menu",
-        subcategory: "rename me",
+        name: "Custom Skyblock Menu (DEV)",
+        description: `Replaces the default Skyblock Menu with a fully customizable one. ${defaultMessage("&cFalse")}`,
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Skyblock Menu",
     })
-    skyblockMenu = false;
+    customSkyblockMenu = false;
 
 
     // -------------------------------------------------------
