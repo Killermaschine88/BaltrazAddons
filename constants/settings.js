@@ -23,7 +23,7 @@ import { defaultMessage } from "../functions/util";
             "Item Lore",
             "Misc QOL",
             // Skyblock Menu
-            "rename me"
+            "rename me",
             // Config
             "Config",
         ];

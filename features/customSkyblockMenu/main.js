@@ -9,53 +9,55 @@ const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
 const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 const Mc = Client.getMinecraft();
 
+let firstTimeMenu = true; // optimization!!!
+let generatedMenu = false; // optimization!!!
+let firstTimeItem = true; // optimization!!!
+let generatedItem = false; // optimization!!!
 
 
+// custom menu GUI
+let menuInv = new InventoryBasic("§cCustom SkyBlock Menu", true, 54); //creates a basic inventory with custom name nad 54 slots (cakend gave this code w let so idk)
+let menuGui = new GuiChest(Player.getPlayer().field_71071_by, menuInv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
 
-
-let firstTime = true;
+// item selector GUI
+let itemInv = new InventoryBasic("§cButton Picker", true, 54); //creates a basic inventory with custom name nad 54 slots (cakend gave this code w let so idk)
+let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
 
 register("postGuiRender", (gui) => {
     if (!Settings.skyblockMenu) return;
-    if (Player.getContainer()?.toString()?.includes("Custom SkyBlock Menu")) {
-        
-        // this is just here as an example for how uuid and texture work
-        let uuid = "e780adce-f739-4c15-9e5b-a78562e2c935"
-        let texture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNiM2FjZGMxMWNhNzQ3YmY3MTBlNTlmNGM4ZTliM2Q5NDlmZGQzNjRjNjg2OTgzMWNhODc4ZjA3NjNkMTc4NyJ9fX0="
 
-        inMenu = true;
-        let inv = Player.getContainer() // cleans up some stuff
-        //leave this here so i can make a createItemAtSlot function ///////  inv.container.func_75141_a(35, new Item("emerald").getItemStack().func_151001_c("§aTrades§r"));
-        //leave this here so i can make a createItemAtSlot function ////// trade.setLore(["§7View your available trades.", "§7These trades are always", "§7available and accessible through", "§7the SkyBlock Menu.", " ", "§7Trades Unlocked: §a100%", "§2----------------------§e24§6/§e24", " ", "§eClick to view!"])
-        for (i = 0; i <= 54; i++) {
-            skullInSlot(i, "§aQuiver§r", ["§7A masterfully crafted Quiver", "§7which holds any kind of", "§7projectile you can think of!", "", "§eClick to open!"], uuid, texture)  
+    //////////////////////////// CUSTOM MENU ////////////////////////////
+    if (Player.getContainer()?.toString()?.includes("Custom SkyBlock Menu")) {
+        if (firstTimeMenu && !generatedMenu) {
+            firstTime = false;
+            generated = true;
+            // this is just here as an example for how uuid and texture work
+            let uuid = "e780adce-f739-4c15-9e5b-a78562e2c935"
+            let texture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNiM2FjZGMxMWNhNzQ3YmY3MTBlNTlmNGM4ZTliM2Q5NDlmZGQzNjRjNjg2OTgzMWNhODc4ZjA3NjNkMTc4NyJ9fX0="
+
         }
     }
+
+    //////////////////////////// ITEM SELECTOR ////////////////////////////
+    if (Player.getContainer()?.toString()?.includes("§cButton Picker")) {
+        if (firstTimeItem && !generatedItem) {
+            firstTimeItem = false;
+            generatedItem = true;
+
+            itemInSlot(0, "", ["§7Click to open the Skyblock Menu"], "paper")
+        }
+    }
+
+
+
+
+
 });
 
-let inv = new InventoryBasic("Custom SkyBlock Menu", true, 54); //creates a basic inventory with custom name nad 54 slots (cakend gave this code w let so idk)
-let guiChest = new GuiChest(Player.getPlayer().field_71071_by, inv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
-let inCustom /// this is for the packet cancelling
+
 register("command", () => {
-    inCustom = true
-    GuiHandler.openGui(guiChest) // opens the gui
-}).setName("custommenu");
-
-register("packetSent", (packet) => {
-    if (packet.includes("C0EPacketClickWindow" && inCustom)) { // this should cancel all window clicking packets sent when you are in custom menu
-        cancelEvent()
-    }
-})
-
-register("guiClosed", (gui) => {
-    if (inCustom) {
-        inCustom = false; // this should make it stop cancelling packets when you leave custom menu
-    }
-});
-
-register("guiOpened", (gui) => {
-    ChatLib.chat("hi")
-})
+    GuiHandler.openGui(menuGui) // opens the gui
+}).setName("test");
 
 function skullInSlot(slot, name, lore, uuid, texture) {
 
@@ -87,6 +89,28 @@ function skullInSlot(slot, name, lore, uuid, texture) {
 
 }
 
+function itemInSlot(slot, name, lore, theItem) {
+    
+        const inv = Player.getContainer() // cleans up stuff
+    
+        inv.container.func_75141_a(slot, new Item(theItem).getItemStack().func_151001_c(name)); // makes the item
+    
+        const item = inv.getStackInSlot(slot) // has to be done after setting the item in the slot
+    
+        // adds lore!
+        item.getNBT().getTag("tag").set("display", new NBTTagCompound(new MCNBTTagCompound())).getTag("display").set("Lore", new NBTTagList(new MCNBTTagList()));
+        for (let i = 0; i < lore.length + 1; i++) {
+            if (!lore[i]) {
+                item.setName(name) // sets the name again? idk why but it works to fix lore bug
+                break;
+            }
+            new NBTTagList(
+                item.getNBT().getTag("tag").getTag("display").get("Lore").rawNBT
+            ).appendTag(new MCNBTTagString(lore[i]));
+        }
+    
+}
+
 
 // this creates a new console that logs packets to it you can access it with /packetlogger to add stuff to console do c.println("balls")
 
@@ -104,3 +128,38 @@ register("packetSent", (packet) => {
         c.println(packet.toString())
     }
 })
+
+// this stops you from moving the items around while still telling us that you clicked that slot
+register("guiMouseClick", (mx, my, btn, gui, event) => {
+    if (Player.getContainer().getName().equals("§cCustom SkyBlock Menu")) {
+        if (Client.isShiftDown()) {
+            Client.currentGui.close()
+            GuiHandler.openGui(itemGui)
+        }
+        // cancel the click so no item move
+        cancel(event);
+    }
+});
+
+
+register("itemTooltip", (lore, item, event) => {
+    if (item.getName().equals("")) {
+        cancel(event);
+    }
+});
+
+
+/*
+// examples of ways to do stuff
+
+Client.currentGui.getSlotUnderMouse().getIndex() // gets the slot you are hovering over
+
+
+
+
+
+
+
+
+
+*/
