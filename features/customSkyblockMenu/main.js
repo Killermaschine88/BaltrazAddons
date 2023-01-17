@@ -23,6 +23,7 @@ let menuGui = new GuiChest(Player.getPlayer().field_71071_by, menuInv); //makes 
 let itemInv = new InventoryBasic("§cButton Picker", true, 54); //creates a basic inventory with custom name nad 54 slots (cakend gave this code w let so idk)
 let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv); //makes a chest out of the players inv and then new inventory (cakend gave this code w let so idk)
 
+
 register("postGuiRender", (gui) => {
     if (!Settings.skyblockMenu) return;
 
@@ -40,11 +41,12 @@ register("postGuiRender", (gui) => {
 
     //////////////////////////// ITEM SELECTOR ////////////////////////////
     if (Player.getContainer()?.toString()?.includes("§cButton Picker")) {
+        console.log(JSON.stringify(Player?.getContainer()?.getStackInSlot(0)?.getLore()))
         if (firstTimeItem && !generatedItem) {
             firstTimeItem = false;
             generatedItem = true;
 
-            itemInSlot(0, "", ["§7Click to open the Skyblock Menu"], "paper")
+            itemInSlot(0, "test", ["§7Click to open the Skyblock Menu", "im a genius ngl"], "paper")
         }
     }
 
@@ -91,7 +93,7 @@ function skullInSlot(slot, name, lore, uuid, texture) {
 
 function itemInSlot(slot, name, lore, theItem) {
     
-        const inv = Player.getContainer() // cleans up stuff
+    let inv = Player.getContainer() // cleans up stuff
     
         inv.container.func_75141_a(slot, new Item(theItem).getItemStack().func_151001_c(name)); // makes the item
     
@@ -139,6 +141,7 @@ register("guiMouseClick", (mx, my, btn, gui, event) => {
         // cancel the click so no item move
         cancel(event);
     }
+    if (Player.getContainer().getName().equals("§cButton Picker")) cancel(event);
 });
 
 
