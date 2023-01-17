@@ -1,4 +1,4 @@
-/// <reference types="../../CTAutocomplete" />
+/// <reference types="../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
 import Settings from "../../constants/settings";
@@ -6,7 +6,6 @@ import { skullInSlot, itemInSlot } from "../../functions/features/customSkyblock
 
 const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
 const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
-const Mc = Client.getMinecraft();
 
 let firstTimeMenu = true;
 let generatedMenu = false;
@@ -53,51 +52,12 @@ register("command", () => {
     GuiHandler.openGui(menuGui); // opens the gui
 }).setName("test");
 
-// this creates a new console that logs packets to it you can access it with /packetlogger to add stuff to console do c.println("balls")
-
-const con = com.chattriggers.ctjs.utils.console.Console;
-const c = new con(null);
-
-register("Command", () => {
-    c.showConsole();
-}).setName("packetlogger");
-
-register("packetSent", (packet) => {
-    if (!packet.toString().includes("C03") && !packet.toString().includes("C0F") && !packet.toString().includes("C00")) {
-        c.println(packet.toString());
-    }
-});
-
-// this stops you from moving the items around while still telling us that you clicked that slot
-register("guiMouseClick", (mx, my, btn, gui, event) => {
-    if (Player.getContainer().getName().equals("§cCustom SkyBlock Menu§r")) {
-        if (Client.isShiftDown()) {
-            Client.currentGui.close();
-            GuiHandler.openGui(itemGui);
-        }
-        // cancel the click so no item move
-        cancel(event);
-    }
-    if (Player.getContainer().getName().equals("§cButton Picker")) return cancel(event);
-});
-
 register("itemTooltip", (lore, item, event) => {
     if (item.getName().equals("")) {
         cancel(event);
     }
 });
 
-/*
 // examples of ways to do stuff
 
-Client.currentGui.getSlotUnderMouse().getIndex() // gets the slot you are hovering over
-
-
-
-
-
-
-
-
-
-*/
+//Client.currentGui.getSlotUnderMouse().getIndex() // gets the slot you are hovering over

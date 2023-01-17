@@ -37,7 +37,8 @@ export const getDungeonItemInfo = (inventoryData) => {
 
     const bytearray = java.util.Base64.getDecoder().decode(inventoryData);
     const inputstream = new java.io.ByteArrayInputStream(bytearray);
-    let nbt = net.minecraft.nbt.CompressedStreamTools.func_74796_a(inputstream); // readCompressed
+    // func_74796_a => readCompressed
+    let nbt = net.minecraft.nbt.CompressedStreamTools.func_74796_a(inputstream);
     nbt = `${nbt}`;
 
     if (nbt.includes("Hyperion") || nbt.includes("Scylla") || nbt.includes("Valkyrie") || nbt.includes("Astraea")) {
