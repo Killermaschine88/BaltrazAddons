@@ -53,9 +53,7 @@ register("command", () => {
 }).setName("test");
 
 register("itemTooltip", (lore, item, event) => {
-    if (item.getName().equals("")) {
-        cancel(event);
-    }
+    if (item.getName().includes("Empty Slot") && Settings.hiddenCustomItemTooltip) return cancel(event);
 });
 
 // examples of ways to do stuff
