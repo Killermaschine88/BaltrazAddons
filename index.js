@@ -19,4 +19,7 @@ import "./features/misc/trackTrapperMobs";
 import "./constants/dataLoader";
 
 /* Custom Skyblock Menu */
-import "./features/customSkyblockMenu/main";
+import "./features/customSkyblockMenu/handleItemCreations";
+import "./features/customSkyblockMenu/handleInventoryClicks";
+import "./features/customSkyblockMenu/createMenu";
+import "./features/customSkyblockMenu/createItems";

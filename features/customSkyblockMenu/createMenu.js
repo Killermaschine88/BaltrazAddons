@@ -19,14 +19,14 @@ let menuGui = new GuiChest(Player.getPlayer().field_71071_by, menuInv);
 
 // Creating Custom Item Selector GUI
 // field_71071_by => inventory
-let itemInv = new InventoryBasic("§7Custom SkyBlock Menu Button Picker§r", true, 54);
-let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv);
+let itemInv = new InventoryBasic("§7Choose an icon§r", true, 54);
+export let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv);
 
 register("postGuiRender", (gui) => {
-    if (!Settings.skyblockMenu) return;
+    if (!Settings.customSkyblockMenu) return;
 
     /*                          Custom Skyblock Menu                        */
-    if (Player.getContainer()?.toString()?.includes("Custom SkyBlock Menu")) {
+    if (Player.getContainer()?.toString()?.includes("§7Custom SkyBlock Menu§r")) {
         if (firstTimeMenu && !generatedMenu) {
             firstTime = false;
             generated = true;
@@ -37,14 +37,14 @@ register("postGuiRender", (gui) => {
     }
 
     /*                          Custom Item Selector                            */
-    if (Player.getContainer()?.toString()?.includes("§cButton Picker§r")) {
-        console.log(JSON.stringify(Player?.getContainer()?.getStackInSlot(0)?.getLore()));
+    if (Player.getContainer()?.toString()?.includes("§7Choose an icon§r")) {
         if (firstTimeItem && !generatedItem) {
             firstTimeItem = false;
             generatedItem = true;
 
             itemInSlot(0, "test", ["§7Click to open the Skyblock Menu§r", "§cim a genius ngl§r"], "paper");
         }
+        console.log((Player?.getContainer()?.getStackInSlot(0)?.getNBT()?.getTag("tag")?.getTag("display")?.get("Lore")).toString().replace(/[0-9]:/g, ""));  // This gets the lore of the item and puts it in the format required for the item creation functions
     }
 });
 
