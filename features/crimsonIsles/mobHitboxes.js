@@ -2,36 +2,46 @@
 /// <reference lib="es2015" />
 
 import Settings from "../../constants/settings";
+import { BaseFeature } from "../../classes/BaseFeature";
 import RenderLib from "RenderLib";
 import { essentialsNotification } from "../../functions/essentials";
 
 let lastNotification = 0;
 
-register("renderWorld", () => {
-    if (!Settings.mobHitboxes) return;
-    if (playerData.currentWorld !== "Crimson Isles") return;
+class MobHitboxes extends BaseFeature {
+    constructor() {
+        super();
 
-    if (lastNotification !== 0) {
-        lastNotification++;
-        if (lastNotification > 10000) lastNotification = 0;
-    }
+        this.settingName = "mobHitboxes"
+        this.event = register("renderWorld", () => {
+            if (!Settings.mobHitboxes) return;
+            if (playerData.currentWorld !== "Crimson Isles") return;
 
-    World.getAllEntitiesOfType(net.minecraft.entity.item.EntityArmorStand).forEach((entity) => {
-        let name = entity.getName();
+            if (lastNotification !== 0) {
+                lastNotification++;
+                if (lastNotification > 10000) lastNotification = 0;
+            }
 
-        name = name.removeFormatting();
-        let existedTicks = entity.getTicksExisted();
+            World.getAllEntitiesOfType(net.minecraft.entity.item.EntityArmorStand).forEach((entity) => {
+                let name = entity.getName();
 
-        if (name.includes("Vanquisher") || name.includes("[Lv400] Thunder") || name.includes("[Lv600] Lord Jawbus")) {
-            if (existedTicks >= 10) {
-                RenderLib.drawEspBox(entity.getX(), entity.getY(), entity.getZ(), 2, 2, 1, 0, 0, 1, Settings.isPublicRelease ? false : true);
-                if (lastNotification === 0) {
-                    if (Settings.useEssentialsNotifications) {
-                        essentialsNotification(`${name} is nearby!`, "Box drawn on Mob.", 5);
-                        lastNotification++;
+                name = name.removeFormatting();
+                let existedTicks = entity.getTicksExisted();
+
+                if (name.includes("Vanquisher") || name.includes("[Lv400] Thunder") || name.includes("[Lv600] Lord Jawbus")) {
+                    if (existedTicks >= 10) {
+                        RenderLib.drawEspBox(entity.getX(), entity.getY(), entity.getZ(), 2, 2, 1, 0, 0, 1, false);
+                        if (lastNotification === 0) {
+                            if (Settings.useEssentialsNotifications) {
+                                essentialsNotification(`${name} is nearby!`, "Box drawn on Mob.", 5);
+                                lastNotification++;
+                            }
+                        }
                     }
                 }
-            }
-        }
-    });
-});
+            });
+        });
+
+        this.registerEvent()
+    }
+}
