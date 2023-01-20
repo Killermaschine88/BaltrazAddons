@@ -16,7 +16,7 @@ export const getRank = (playerInfo) => {
         MODERATOR: "&2[MOD]",
         HELPER: "&9[HELPER]",
         YOUTUBER: "&c[&fYOUTUBE&c]",
-        GAME_MASTER: "&2[GM]",
+        GAME_MASTER: "&2[GM]&r",
     };
     const player = playerInfo.player;
     // Special ranks

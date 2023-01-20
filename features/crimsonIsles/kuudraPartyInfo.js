@@ -3,7 +3,7 @@
 
 import Settings from "../../constants/settings";
 import { getHypixelPlayerData, getSkyblockPlayerData, getUUID } from "../../functions/api";
-import { getRank } from "../../functions/functions";
+import { getRank } from "../../functions/ranks";
 import { missingAPIKeyError, sendError } from "../../functions/errors";
 import { prefix } from "../../constants/variables";
 
