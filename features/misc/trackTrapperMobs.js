@@ -4,6 +4,7 @@
 import Settings from "../../constants/settings";
 import RenderLib from "RenderLib";
 import { essentialsNotification } from "../../functions/essentials";
+import { playerData } from "../../constants/dataLoader"
 
 let lastNotification = 0;
 

@@ -18,6 +18,9 @@ import "./features/misc/trackTrapperMobs";
 /* Data Loader */
 import "./constants/dataLoader";
 
+/* Settings Manager */
+import "./classes/FeatureManager";
+
 /* Custom Skyblock Menu */
 import "./features/customSkyblockMenu/handleItemCreations";
 import "./features/customSkyblockMenu/handleInventoryClicks";

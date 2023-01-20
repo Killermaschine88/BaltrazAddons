@@ -2,20 +2,20 @@
 /// <reference lib="es2015" />
 
 import Settings from "../../constants/settings";
-import { BaseFeature } from "../../classes/BaseFeature";
+import BaseFeature from "../../classes/BaseFeature";
 import RenderLib from "RenderLib";
 import { essentialsNotification } from "../../functions/essentials";
+import { playerData } from "../../constants/dataLoader"
 
 let lastNotification = 0;
 
-class MobHitboxes extends BaseFeature {
+new class MobHitboxes extends BaseFeature {
     constructor() {
         super();
 
         this.settingName = "mobHitboxes"
         this.event = register("renderWorld", () => {
-            if (!Settings.mobHitboxes) return;
-            if (playerData.currentWorld !== "Crimson Isles") return;
+            if (playerData.currentWorld !== "Crimson Isle") return;
 
             if (lastNotification !== 0) {
                 lastNotification++;

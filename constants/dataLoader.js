@@ -29,6 +29,4 @@ class DataLoader {
     }
 }
 
-global.playerData = new DataLoader();
-let loader = global.playerData;
-export default loader;
+export const playerData = new DataLoader();
