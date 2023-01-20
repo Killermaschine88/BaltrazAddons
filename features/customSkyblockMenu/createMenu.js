@@ -28,8 +28,11 @@ register("postGuiRender", (gui) => {
     /*                          Custom Skyblock Menu                        */
     if (Player.getContainer()?.toString()?.includes("§7Custom SkyBlock Menu§r")) {
         if (firstTimeMenu && !generatedMenu) {
+            itemInSlot(0, "test", ["§7Click to open the Skyblock Menu§r", "§cim a genius ngl§r"], "paper");
             firstTime = false;
             generated = true;
+            let test1 = Player.getContainer().getStackInSlot(0).getItemStack();
+            Player.getContainer().container.func_75141_a(1, test1);
             // this is just here as an example for how uuid and texture work
             let uuid = "e780adce-f739-4c15-9e5b-a78562e2c935";
             let texture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNiM2FjZGMxMWNhNzQ3YmY3MTBlNTlmNGM4ZTliM2Q5NDlmZGQzNjRjNjg2OTgzMWNhODc4ZjA3NjNkMTc4NyJ9fX0=";
@@ -59,3 +62,4 @@ register("itemTooltip", (lore, item, event) => {
 // examples of ways to do stuff
 
 //Client.currentGui.getSlotUnderMouse().getIndex() // gets the slot you are hovering over
+// let example = Player.getContainer().getStackInSlot(SLOT).getItemStack(); // grabs the item that you want to move somewhere else
