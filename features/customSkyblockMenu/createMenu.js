@@ -47,7 +47,16 @@ register("postGuiRender", (gui) => {
 
             itemInSlot(0, "test", ["§7Click to open the Skyblock Menu§r", "§cim a genius ngl§r"], "paper");
         }
-        console.log((Player?.getContainer()?.getStackInSlot(0)?.getNBT()?.getTag("tag")?.getTag("display")?.get("Lore")).toString().replace(/[0-9]:/g, ""));  // This gets the lore of the item and puts it in the format required for the item creation functions
+        console.log(
+            Player?.getContainer()
+                ?.getStackInSlot(0)
+                ?.getNBT()
+                ?.getTag("tag")
+                ?.getTag("display")
+                ?.get("Lore")
+                .toString()
+                .replace(/[0-9]:/g, "")
+        ); // This gets the lore of the item and puts it in the format required for the item creation functions
     }
 });
 

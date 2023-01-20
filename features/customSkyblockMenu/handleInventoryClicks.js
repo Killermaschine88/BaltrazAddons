@@ -7,7 +7,7 @@ import { itemGui } from "./createMenu";
 register("guiMouseClick", (mx, my, btn, gui, event) => {
     if (Player.getContainer().getName().equals("§7Custom SkyBlock Menu§r")) {
         if (Client.isShiftDown()) {
-            ChatLib.chat("hi?")
+            ChatLib.chat("hi?");
             Client.currentGui.close();
             GuiHandler.openGui(itemGui);
         }
