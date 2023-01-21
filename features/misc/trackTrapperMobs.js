@@ -14,6 +14,7 @@ class TrapperMobTracker extends BaseFeature {
         super();
 
         this.setName("trapperMobTracker");
+        this.setRequiredWorld("The Farming Islands")
         this.addEvent(
             register("renderWorld", () => {
                 if (!Settings.trapperMobTracker) return;

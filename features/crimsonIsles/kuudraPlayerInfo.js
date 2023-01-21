@@ -13,6 +13,7 @@ class KuudraPlayerInfo extends BaseFeature {
         super();
 
         this.setName("kuudraPlayerInfo");
+        this.setRequiredWorld("Crimson Isle")
         this.addEvent(
             register("chat", (name, combatLevel, event) => {
                 // Chat Utilities

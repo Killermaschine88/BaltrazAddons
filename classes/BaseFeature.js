@@ -6,6 +6,7 @@ import { featureManager } from "./FeatureManager";
 class BaseFeature {
     constructor() {
         this.events = [];
+        this.world = "any";
         this.featureManager = featureManager;
     }
 
