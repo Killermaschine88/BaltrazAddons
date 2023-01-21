@@ -17,7 +17,6 @@ class MobHitboxes extends BaseFeature {
         this.setRequiredWorld("Crimson Isle")
         this.addEvent(
             register("renderWorld", () => {
-                ChatLib.chat("event ran")
                 if (!Settings.mobHitboxes) return;
                 if (playerData.currentWorld !== "Crimson Isle") return;
 
