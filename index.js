@@ -10,7 +10,7 @@ import "./features/crimsonIsles/mobHitboxes";
 import "./features/crimsonIsles/kuudraPlayerInfo";
 
 // Misc
-import "./features/misc/damageRenderer";
+import "./features/misc/customDamageRenderer";
 import "./features/misc/showChampionLevel";
 import "./features/misc/showHecatombLevel";
 import "./features/misc/trackTrapperMobs";

@@ -35,4 +35,4 @@ class ShowChampionLevel extends BaseFeature {
     }
 }
 
-export default new ShowChampionLevel()
+export default new ShowChampionLevel();

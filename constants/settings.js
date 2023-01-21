@@ -198,7 +198,7 @@ class Settings {
         category: "Misc",
         subcategory: "Damage Render",
     })
-    customDamageRender = false;
+    customDamageRenderer = false;
 
     @SelectorProperty({
         name: "Custom Damage Type",

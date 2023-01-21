@@ -35,4 +35,4 @@ class ShowHecatombLevel extends BaseFeature {
     }
 }
 
-export default new ShowHecatombLevel()
+export default new ShowHecatombLevel();
