@@ -53,6 +53,9 @@ class Settings {
         this.addDependency("Minimum Berserker Level", "Auto Kick Berserker");
         this.addDependency("Minimum Archer Level", "Auto Kick Archer");
         this.addDependency("Minimum Tank Level", "Auto Kick Tank");
+
+        // Custom Skyblock Menu
+        this.addDependency("Hide Glass Pane Tooltip", "Custom SkyBlock Menu (DEV)");
     }
 
     // -------------------------------------------------------
@@ -283,6 +286,14 @@ class Settings {
         subcategory: "Custom Skyblock Menu",
     })
     customSkyblockMenu = false;
+
+    @SwitchProperty({
+        name: "Hide Glass Pane Tooltip",
+        description: `If the Tooltip of Glasspanes in the Custom Menu should be hidden or visible ${defaultMessage("&cFalse")}`,
+        category: "Custom SkyBlock Menu",
+        subcategory: "Custom Skyblock Menu",
+    })
+    hideGlassPaneTooltip = false;
 
     // -------------------------------------------------------
     /*                         Config                       */

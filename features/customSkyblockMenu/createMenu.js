@@ -4,7 +4,9 @@
 import Settings from "../../constants/settings";
 import BaseFeature from "../../classes/BaseFeature";
 import { skullInSlot, itemInSlot } from "../../functions/features/customSkyblockMenu/nbt";
+import { createGui } from "../../functions/features/customSkyblockMenu/util";
 
+// Java Imports
 const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
 const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 
@@ -15,18 +17,15 @@ let generatedItem = false;
 
 // Creating Custom Skyblock Menu GUI
 // field_71071_by => inventory
-let menuInv = new InventoryBasic("§7Custom SkyBlock Menu§r", true, 54);
-let menuGui = new GuiChest(Player.getPlayer().field_71071_by, menuInv);
+let menuGui = createGui("§7Custom SkyBlock Menu§r");
 
 // Creating Custom Item Selector GUI
 // field_71071_by => inventory
-let itemInv = new InventoryBasic("§7Choose an icon§r", true, 54);
-export let itemGui = new GuiChest(Player.getPlayer().field_71071_by, itemInv);
+export let itemGui = createGui("§7Choose an Icon§r");
 
 register("postGuiRender", (gui) => {
     if (!Settings.customSkyblockMenu) return;
 
-    /*                          Custom Skyblock Menu                        */
     if (Player.getContainer()?.toString()?.includes("§7Custom SkyBlock Menu§r")) {
         if (firstTimeMenu && !generatedMenu) {
             itemInSlot(0, "test", ["§7Click to open the Skyblock Menu§r", "§cim a genius ngl§r"], "paper");

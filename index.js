@@ -25,6 +25,7 @@ import "./classes/FeatureManager";
 
 /* Custom Skyblock Menu */
 import "./features/customSkyblockMenu/handleItemCreations";
-import "./features/customSkyblockMenu/handleInventoryClicks";
+import "./features/customSkyblockMenu/inventoryClickHandler";
 import "./features/customSkyblockMenu/createMenu";
 import "./features/customSkyblockMenu/createItems";
+import "./features/customSkyblockMenu/tooltipHider";
