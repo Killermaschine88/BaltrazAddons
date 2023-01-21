@@ -3,6 +3,7 @@
 import "./features/commands/mainCommand";
 
 // Dungeons
+import "./features/dungeons/dungeonAutoKicker";
 import "./features/dungeons/dungeonPlayerInfo";
 
 // Crimson Isles
