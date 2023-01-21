@@ -10,7 +10,7 @@ class BaseFeature {
     }
 
     registerEvents() {
-        this.featureManager.addToManager(this.settingName, this.events);
+        this.featureManager.addToManager(this.settingName, this.events, this.world);
     }
 
     setName(name) {
@@ -19,6 +19,10 @@ class BaseFeature {
 
     addEvent(event) {
         this.events.push(event);
+    }
+
+    setRequiredWorld(world) {
+        this.world = world;
     }
 }
 

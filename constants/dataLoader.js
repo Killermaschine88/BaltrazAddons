@@ -5,7 +5,6 @@ class DataLoader {
     constructor() {
         // Variables
         this.inSkyblock = false;
-        this.currentParty = {};
         this.currentWorld = "unknown";
 
         // Checking for Current World
@@ -21,11 +20,6 @@ class DataLoader {
             this.isInSkyblock = Scoreboard.getTitle()?.removeFormatting()?.includes("SKYBLOCK");
             this.currentWorld = worldName;
         }).setCriteria('{"server":"${server}","gametype":"SKYBLOCK","mode":"${mode}","map":"${worldName}"}');
-    }
-
-    // Methods
-    registerChat(msg, fun) {
-        return register("chat", fun.bind(this)).setCriteria(msg);
     }
 }
 
