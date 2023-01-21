@@ -71,6 +71,6 @@ class KuudraPlayerInfo extends BaseFeature {
 
         this.registerEvents();
     }
-};
+}
 
 export default new KuudraPlayerInfo();

@@ -9,7 +9,7 @@ import { playerData } from "../../constants/dataLoader";
 
 let lastNotification = 0;
 
-new (class TrapperMobTracker extends BaseFeature {
+class TrapperMobTracker extends BaseFeature {
     constructor() {
         super();
 
@@ -46,4 +46,6 @@ new (class TrapperMobTracker extends BaseFeature {
 
         this.registerEvents();
     }
-})();
+}
+
+export default new TrapperMobTracker();

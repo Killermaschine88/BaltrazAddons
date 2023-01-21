@@ -11,7 +11,8 @@ import "./features/crimsonIsles/kuudraPlayerInfo";
 
 // Misc
 import "./features/misc/damageRenderer";
-import "./features/misc/loreRenderer";
+import "./features/misc/showChampionLevel";
+import "./features/misc/showHecatombLevel";
 //import "./features/misc/snakeMinigameHelper";
 import "./features/misc/trackTrapperMobs";
 

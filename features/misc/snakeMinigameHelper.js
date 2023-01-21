@@ -8,7 +8,7 @@ let inSnake = false;
 
 register("postGuiRender", (gui) => {
     if (!Settings.snakeMinigameHelper) return;
-    if (Player.getOpenedInventory()?.toString()?.includes("Snake")) {
+    if (Player.getContainer()?.toString()?.includes("Snake")) {
         if (firstTime) {
             firstTime = false;
             inSnake = true;

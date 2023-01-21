@@ -18,7 +18,7 @@ const dungeonClasses = {
     Tank: "T",
 };
 
-new (class DungeonPlayerInfo extends BaseFeature {
+class DungeonPlayerInfo extends BaseFeature {
     constructor() {
         super();
 
@@ -85,4 +85,6 @@ new (class DungeonPlayerInfo extends BaseFeature {
 
         this.registerEvents();
     }
-})();
+}
+
+export default new DungeonPlayerInfo();

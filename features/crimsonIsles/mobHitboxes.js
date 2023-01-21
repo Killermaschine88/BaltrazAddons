@@ -46,6 +46,6 @@ class MobHitboxes extends BaseFeature {
 
         this.registerEvents();
     }
-};
+}
 
 export default new MobHitboxes();
