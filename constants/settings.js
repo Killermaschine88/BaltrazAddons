@@ -44,6 +44,11 @@ class Settings {
 
         /* Dependencies */
         // Party Auto Party Kicker
+        this.addDependency("Auto Kick Healer", "Dungeon Party Autokicker");
+        this.addDependency("Auto Kick Mage", "Dungeon Party Autokicker");
+        this.addDependency("Auto Kick Berserker", "Dungeon Party Autokicker");
+        this.addDependency("Auto Kick Archer", "Dungeon Party Autokicker");
+        this.addDependency("Auto Kick Tank", "Dungeon Party Autokicker");
         this.addDependency("Minimum Healer Level", "Auto Kick Healer");
         this.addDependency("Minimum Mage Level", "Auto Kick Mage");
         this.addDependency("Minimum Berserker Level", "Auto Kick Berserker");
@@ -51,12 +56,18 @@ class Settings {
         this.addDependency("Minimum Tank Level", "Auto Kick Tank");
     }
 
-    partyDisplayGui = new Gui();
-
     // -------------------------------------------------------
     /*                  Dungeons                            */
     // -------------------------------------------------------
     // Auto Party Kicker
+    @SwitchProperty({
+        name: "Dungeon Party Autokicker",
+        description: `Main toggled for the Dungeon Party Autokicker. ${defaultMessage("&cFalse")}`,
+        category: "Dungeons",
+        subcategory: "Auto Party Kicker",
+    })
+    dungeonAutoKicker = false;
+
     @SwitchProperty({
         name: "Auto Kick Healer",
         description: `Kick Healers as soon as they join. ${defaultMessage("&cFalse")}`,

@@ -9,14 +9,13 @@ import { playerData } from "../../constants/dataLoader";
 
 let lastNotification = 0;
 
-new (class MobHitboxes extends BaseFeature {
+class MobHitboxes extends BaseFeature {
     constructor() {
         super();
 
         this.setName("mobHitboxes");
         this.addEvent(
             register("renderWorld", () => {
-                ChatLib.chat("event running");
                 if (!Settings.mobHitboxes) return;
                 if (playerData.currentWorld !== "Crimson Isle") return;
 
@@ -47,4 +46,6 @@ new (class MobHitboxes extends BaseFeature {
 
         this.registerEvents();
     }
-})();
+};
+
+export default new MobHitboxes();

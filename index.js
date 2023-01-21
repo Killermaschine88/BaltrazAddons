@@ -3,11 +3,11 @@
 import "./features/commands/mainCommand";
 
 // Dungeons
-import "./features/dungeons/dungeonPartyInfo";
+import "./features/dungeons/dungeonPlayerInfo";
 
 // Crimson Isles
 import "./features/crimsonIsles/mobHitboxes";
-import "./features/crimsonIsles/kuudraPartyInfo";
+import "./features/crimsonIsles/kuudraPlayerInfo";
 
 // Misc
 import "./features/misc/damageRenderer";
