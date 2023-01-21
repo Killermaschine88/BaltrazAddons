@@ -13,8 +13,8 @@ import "./features/crimsonIsles/kuudraPlayerInfo";
 import "./features/misc/damageRenderer";
 import "./features/misc/showChampionLevel";
 import "./features/misc/showHecatombLevel";
-//import "./features/misc/snakeMinigameHelper";
 import "./features/misc/trackTrapperMobs";
+//import "./features/misc/snakeMinigameHelper";
 
 /* Data Loader */
 import "./constants/dataLoader";
