@@ -13,18 +13,22 @@ class FeatureManager {
 
             for (let i = 0; i < registeredEvents.length; i++) {
                 if (Settings[registeredEvents[i]]) {
-                    this.events[registeredEvents[i]].register();
+                    this.events[registeredEvents[i]].forEach((event) => {
+                        event.register();
+                    });
                 } else {
-                    this.events[registeredEvents[i]].unregister();
+                    this.events[registeredEvents[i]].forEach((event) => {
+                        event.unregister();
+                    });
                 }
             }
         }).setDelay(1);
     }
 
-    addToManager(settingName, event) {
-        this.events[settingName] = event;
+    addToManager(settingName, events) {
+        this.events[settingName] = events;
         return this;
     }
 }
 
-export const featureManager = new FeatureManager()
+export const featureManager = new FeatureManager();

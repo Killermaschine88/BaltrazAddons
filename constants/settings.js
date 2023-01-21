@@ -6,7 +6,7 @@ import { defaultMessage } from "../functions/util";
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["Dungeons", "Crimson Isles", "Misc", "SkyBlock Menu", "Config"];
+        const categories = ["Dungeons", "Crimson Isles", "Misc", "Custom SkyBlock Menu", "Config"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
@@ -246,21 +246,21 @@ class Settings {
     showHecatombLevel = false;
 
     // Misc QOl
-    @SwitchProperty({
-        name: "Snake Minigame Helper",
-        description: `Allows you to use the WASD keys to control the snake in the Abiphone. ${defaultMessage("&cFalse")}`,
-        category: "Misc",
-        subcategory: "Misc QOL",
-    })
-    snakeMinigameHelper = false;
+    // @SwitchProperty({
+    //     name: "Snake Minigame Helper",
+    //     description: `Allows you to use the WASD keys to control the snake in the Abiphone. ${defaultMessage("&cFalse")}`,
+    //     category: "Misc",
+    //     subcategory: "Misc QOL",
+    // })
+    // snakeMinigameHelper = false;
 
     @SwitchProperty({
-        name: "Tracker Trapper Mobs",
+        name: "Trapper Mob Tracker",
         description: `Draw an Box around Trapper mobs when they are in your view distance. ${defaultMessage("&cFalse")}`,
         category: "Misc",
         subcategory: "Misc QOL",
     })
-    trackTrapperMobs = false;
+    trapperMobTracker = false;
 
     // -------------------------------------------------------
     /*              Custom Skyblock Menu Stuff              */
@@ -273,47 +273,6 @@ class Settings {
         subcategory: "Custom Skyblock Menu",
     })
     customSkyblockMenu = false;
-
-    // Custom Commands
-    @TextProperty({
-        name: "Custom Menu Command #1",
-        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
-        category: "Custom SkyBlock Menu",
-        subcategory: "Custom Commands",
-    })
-    customMenuCommand1 = "";
-
-    @TextProperty({
-        name: "Custom Menu Command #2",
-        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
-        category: "Custom SkyBlock Menu",
-        subcategory: "Custom Commands",
-    })
-    customMenuCommand2 = "";
-
-    @TextProperty({
-        name: "Custom Menu Command #3",
-        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
-        category: "Custom SkyBlock Menu",
-        subcategory: "Custom Commands",
-    })
-    customMenuCommand3 = "";
-
-    @TextProperty({
-        name: "Custom Menu Command #4",
-        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
-        category: "Custom SkyBlock Menu",
-        subcategory: "Custom Commands",
-    })
-    customMenuCommand4 = "";
-
-    @TextProperty({
-        name: "Custom Menu Command #5",
-        description: "Set a command to run upon pressing the corresponding slot in the Custom SkyBlock Menu",
-        category: "Custom SkyBlock Menu",
-        subcategory: "Custom Commands",
-    })
-    customMenuCommand5 = "";
 
 
     // -------------------------------------------------------
