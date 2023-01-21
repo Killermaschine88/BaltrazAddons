@@ -14,7 +14,7 @@ class MobHitboxes extends BaseFeature {
         super();
 
         this.setName("mobHitboxes");
-        this.setRequiredWorld("Crimson Isle")
+        this.setRequiredWorld("Crimson Isle");
         this.addEvent(
             register("renderWorld", () => {
                 if (!Settings.mobHitboxes) return;

@@ -31,7 +31,6 @@ import { defaultMessage } from "../functions/util";
         return subcategories.indexOf(a.getValue()[0].attributesExt.subcategory) - subcategories.indexOf(b.getValue()[0].attributesExt.subcategory);
     },
 })
-
 class Settings {
     constructor() {
         this.initialize(this);
@@ -284,7 +283,6 @@ class Settings {
         subcategory: "Custom Skyblock Menu",
     })
     customSkyblockMenu = false;
-
 
     // -------------------------------------------------------
     /*                         Config                       */

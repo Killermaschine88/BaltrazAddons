@@ -2,7 +2,7 @@
 /// <reference lib="es2015" />
 
 import Settings from "../constants/settings";
-import { playerData } from "../constants/dataLoader"
+import { playerData } from "../constants/dataLoader";
 
 class FeatureManager {
     constructor() {
@@ -15,7 +15,7 @@ class FeatureManager {
             for (let i = 0; i < registeredEvents.length; i++) {
                 if (Settings[registeredEvents[i]]) {
                     this.loadedEvents[registeredEvents[i]].events.forEach((event) => {
-                        const requiredWorld = this.loadedEvents[registeredEvents[i]].requiredWorld
+                        const requiredWorld = this.loadedEvents[registeredEvents[i]].requiredWorld;
                         this.isInArea(requiredWorld) ? event.register() : event.unregister();
                     });
                 } else {
@@ -28,15 +28,21 @@ class FeatureManager {
     }
 
     addToManager(settingName, events, area) {
+        if (this.loadedEvents[settingName]) {
+            events.forEach((event) => {
+                this.loadedEvents[settingName].events.push(event);
+            });
+            return this;
+        }
         this.loadedEvents[settingName] = {
             events: events,
-            requiredWorld: area
+            requiredWorld: area,
         };
         return this;
     }
 
     isInArea(world) {
-        if(world === "any") return true;
+        if (world === "any") return true;
         return playerData.currentWorld === world;
     }
 }
