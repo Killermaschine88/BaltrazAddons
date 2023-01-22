@@ -18,6 +18,8 @@ const dungeonClasses = {
     Tank: "T",
 };
 
+let autoKicked = false;
+
 class DungeonPlayerInfo extends BaseFeature {
     constructor() {
         super();
@@ -29,6 +31,10 @@ class DungeonPlayerInfo extends BaseFeature {
                 if (Settings.dungeonPlayerInfo) {
                     if (!Settings.apiKey) {
                         return missingAPIKeyError("Dungeon Party Player Info");
+                    }
+
+                    if(autoKicked) {
+                        return autoKicked = false;
                     }
 
                     getUUID(name)
@@ -87,4 +93,28 @@ class DungeonPlayerInfo extends BaseFeature {
     }
 }
 
-export default new DungeonPlayerInfo();
+class DungeonAutoKicker extends BaseFeature {
+    constructor() {
+        super();
+
+        this.setName("dungeonAutoKicker");
+        this.addEvent(
+            register("chat", (name, selectedClass, classLevel, event) => {
+                if (!Settings.dungeonAutoKicker) return;
+                if (Settings[`autoKick${selectedClass}`]) {
+                    if (Settings[`autoKick${selectedClass}Level`] > classLevel) {
+                        setTimeout(() => {
+                            autoKicked = true;
+                            return ChatLib.command(`p kick ${name}`);
+                        }, 500);
+                    }
+                }
+            }).setCriteria("Party Finder > ${name} joined the dungeon group! (${selectedClass} Level ${classLevel})")
+        );
+
+        this.registerEvents();
+    }
+}
+
+export const DungeonAutoKickerExport = new DungeonAutoKicker();
+export const DungeonPlayerInfoExport = new DungeonPlayerInfo();

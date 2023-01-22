@@ -1,10 +1,9 @@
 /* Features */
-// Command
+// Main Command
 import "./features/commands/mainCommand";
 
 // Dungeons
-import "./features/dungeons/dungeonAutoKicker";
-import "./features/dungeons/dungeonPlayerInfo";
+import "./features/dungeons/dungeonParty";
 
 // Crimson Isles
 import "./features/crimsonIsles/mobHitboxes";
@@ -15,7 +14,6 @@ import "./features/misc/customDamageRenderer";
 import "./features/misc/showChampionLevel";
 import "./features/misc/showHecatombLevel";
 import "./features/misc/trackTrapperMobs";
-//import "./features/misc/snakeMinigameHelper";
 
 /* Data Loader */
 import "./constants/dataLoader";
