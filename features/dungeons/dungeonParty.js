@@ -18,7 +18,7 @@ const dungeonClasses = {
     Tank: "T",
 };
 
-let autoKicked = false;
+// let autoKicked = false;
 
 class DungeonAutoKicker extends BaseFeature {
     constructor() {
@@ -31,7 +31,7 @@ class DungeonAutoKicker extends BaseFeature {
                 if (Settings[`autoKick${selectedClass}`]) {
                     if (Settings[`autoKick${selectedClass}Level`] > classLevel) {
                         setTimeout(() => {
-                            autoKicked = true;
+                            // autoKicked = true;
                             return ChatLib.command(`p kick ${name}`);
                         }, 500);
                     }
@@ -56,9 +56,9 @@ class DungeonPlayerInfo extends BaseFeature {
                         return missingAPIKeyError("Dungeon Party Player Info");
                     }
 
-                    if(autoKicked) {
-                        return autoKicked = false;
-                    }
+                    // if(autoKicked) {
+                    //     return autoKicked = false;
+                    // }
 
                     getUUID(name)
                         .then((res) => {
