@@ -1,13 +1,14 @@
 /// <reference types="../../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
+const kuudraItems = ["Hyperion", "Scylla", "Valkyrie", "Astraea", "Terminator", "Gyrokinetic Wand"];
+
 export const getMiscKuudraInfo = (userData) => {
     return "&7WIP";
 };
 
 export const getKuudraItemInfo = (inventoryData) => {
-    let hasHyperion = false;
-    let hasTerminator = false;
+    let hasItems = [];
     let progress = 0;
 
     if (!inventoryData)
@@ -22,18 +23,15 @@ export const getKuudraItemInfo = (inventoryData) => {
     let nbt = net.minecraft.nbt.CompressedStreamTools.func_74796_a(inputstream);
     nbt = `${nbt}`;
 
-    if (nbt.includes("Hyperion") || nbt.includes("Scylla") || nbt.includes("Valkyrie") || nbt.includes("Astraea")) {
-        hasHyperion = true;
-        progress++;
-    }
-
-    if (nbt.includes("Terminator")) {
-        hasTerminator = true;
-        progress++;
-    }
+    kuudraItems.forEach((item) => {
+        if(nbt.includes(item)) {
+            hasItems.push(`&7${item}`);
+            progress++;
+        }
+    })
 
     return {
-        string: `&7Hyperion: ${hasHyperion ? "&aYes" : "&cNo"}\n&7Terminator: ${hasTerminator ? "&aYes" : "&cNo"}`,
-        progress: `${progress}/2`,
+        string: hasItems.join("\n"),
+        progress: `${progress}/${kuudraItems.length - 3}`,
     };
 };
