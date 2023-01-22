@@ -4,6 +4,7 @@
 import Settings from "../../constants/settings";
 import BaseFeature from "../../classes/BaseFeature";
 import { getHypixelPlayerData, getSkyblockPlayerData, getUUID } from "../../functions/api";
+import { getKuudraItemInfo, getMiscKuudraInfo } from "../../functions/features/crimsonIsles/kuudraPartyInfo";
 import { getRank } from "../../functions/ranks";
 import { missingAPIKeyError, sendError } from "../../functions/errors";
 import { prefix } from "../../constants/variables";
