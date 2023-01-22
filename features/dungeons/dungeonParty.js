@@ -20,6 +20,29 @@ const dungeonClasses = {
 
 let autoKicked = false;
 
+class DungeonAutoKicker extends BaseFeature {
+    constructor() {
+        super();
+
+        this.setName("dungeonAutoKicker");
+        this.addEvent(
+            register("chat", (name, selectedClass, classLevel, event) => {
+                if (!Settings.dungeonAutoKicker) return;
+                if (Settings[`autoKick${selectedClass}`]) {
+                    if (Settings[`autoKick${selectedClass}Level`] > classLevel) {
+                        setTimeout(() => {
+                            autoKicked = true;
+                            return ChatLib.command(`p kick ${name}`);
+                        }, 500);
+                    }
+                }
+            }).setCriteria("Party Finder > ${name} joined the dungeon group! (${selectedClass} Level ${classLevel})")
+        );
+
+        this.registerEvents();
+    }
+}
+
 class DungeonPlayerInfo extends BaseFeature {
     constructor() {
         super();
@@ -85,29 +108,6 @@ class DungeonPlayerInfo extends BaseFeature {
                             }
                             console.log(err);
                         });
-                }
-            }).setCriteria("Party Finder > ${name} joined the dungeon group! (${selectedClass} Level ${classLevel})")
-        );
-
-        this.registerEvents();
-    }
-}
-
-class DungeonAutoKicker extends BaseFeature {
-    constructor() {
-        super();
-
-        this.setName("dungeonAutoKicker");
-        this.addEvent(
-            register("chat", (name, selectedClass, classLevel, event) => {
-                if (!Settings.dungeonAutoKicker) return;
-                if (Settings[`autoKick${selectedClass}`]) {
-                    if (Settings[`autoKick${selectedClass}Level`] > classLevel) {
-                        setTimeout(() => {
-                            autoKicked = true;
-                            return ChatLib.command(`p kick ${name}`);
-                        }, 500);
-                    }
                 }
             }).setCriteria("Party Finder > ${name} joined the dungeon group! (${selectedClass} Level ${classLevel})")
         );
