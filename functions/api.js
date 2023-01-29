@@ -1,11 +1,11 @@
 /// <reference types="../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import { customNameURL } from "../constants/variables"
+import { customNameURL } from "../constants/variables";
 
 import Settings from "../constants/settings";
 import request from "../../requestV2";
-import axios from "../../axios"
+import axios from "../../axios";
 
 export const getUUID = (name) => {
     return request({
@@ -29,5 +29,5 @@ export const getHypixelPlayerData = (uuid) => {
 };
 
 export const getCustomNamesData = () => {
-    return axios.get(customNameURL)
+    return axios.get(customNameURL);
 };

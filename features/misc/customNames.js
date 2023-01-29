@@ -23,6 +23,15 @@ class CustomName extends BaseFeature {
                 let originalMessage = ChatLib.getChatMessage(event, true).replaceAll("&r", "");
                 let sendMessage = false;
 
+                let inviter = "";
+                if (originalMessage.includes("has invited you to join their party!")) {
+                    if (originalMessage.includes("[")) {
+                        inviter = originalMessage.split(" ")[1];
+                    } else {
+                        inviter = originalMessage.split(" ")[0];
+                    }
+                }
+
                 // Replacing Original Names with Custom Names
                 originalNames.forEach((originalName) => {
                     // Chat
@@ -32,7 +41,7 @@ class CustomName extends BaseFeature {
                             originalMessage = originalMessage.replaceAll(originalName, allCustomNames[originalName]);
                         } else {
                             originalMessage = originalMessage.replaceAll(getPlayerName(originalName), allCustomNames[originalName]);
-                        } 
+                        }
                         sendMessage = true;
                     }
 
@@ -52,6 +61,9 @@ class CustomName extends BaseFeature {
                 });
 
                 if (sendMessage) {
+                    if (originalMessage.includes("has invited you to join their party!")) {
+                        return new Message(new TextComponent(originalMessage).setClick("run_command", `/party accept ${inviter}`).setHover("show_text", "Click to join party!")).chat();
+                    }
                     return ChatLib.chat(originalMessage);
                 }
             })
@@ -71,12 +83,12 @@ class CustomName extends BaseFeature {
                     const scoreboardLine = Scoreboard?.getLineByIndex(i);
                     originalNames.forEach((originalName) => {
                         if (checkIfInText(fixShittyScoreboard(scoreboardLine?.toString()), getPlayerName(originalName))) {
-                            Scoreboard?.setLine(i+1, `${fixShittyScoreboard(scoreboardLine?.toString())?.replaceAll(getPlayerName(originalName), changeFormatting(allCustomNames[originalName]))}`, true);
+                            Scoreboard?.setLine(i + 1, `${fixShittyScoreboard(scoreboardLine?.toString())?.replaceAll(getPlayerName(originalName), changeFormatting(allCustomNames[originalName]))}`, true);
                         }
                     });
                 }
             })
-        )
+        );
 
         // Lore and Item Name
         this.addEvent(
@@ -95,7 +107,7 @@ class CustomName extends BaseFeature {
                             newName += `${itemName.split(" ")[0]} `;
                             newName += `${changeFormatting(allCustomNames[originalName])}`;
                         }
-                        item.setName(newName)
+                        item.setName(newName);
                     }
 
                     checkLoreForCustomName(item, originalName, allCustomNames[originalName]);
@@ -103,30 +115,12 @@ class CustomName extends BaseFeature {
             })
         );
 
-        // Nameplate + Tablist
+        // Tablist
         // this.addEvent(
         //     register("step", () => {
-
-        //         // Change Player Nameplate
-        //         // func_147114_u => getNetHandler
-        //         // func_175104_a => getPlayerInfo
-        //         // func_178850_i => getPlayerTeam
-        //         // func_96666_b => setNamePrefix
-        //         // func_96662_c => setNameSuffix
-        //         World.getAllPlayers().forEach((player) => {
-        //             const NetHandlerPlayClient = Client.getMinecraft().func_147114_u()
-        //             player.setTabDisplayName("Fish")
-        //             if (NetHandlerPlayClient !== null) {
-        //                 let playerInfo = NetHandlerPlayClient.func_175104_a(player.getName())
-        //                 if (playerInfo !== null) {
-        //                     let thePlayerInfoTeam = NetHandlerPlayClient.func_175104_a(player.getName()).func_178850_i()
-        //                     if (thePlayerInfoTeam !== null) {
-        //                         thePlayerInfoTeam.func_96666_b("")
-        //                         thePlayerInfoTeam.func_96662_c("")
-        //                     }
-        //                 }
-        //              }
-        //         })
+        //         const allCustomNames = playerData.getCustomNames();
+        //         if (!allCustomNames) return;
+        //         const originalNames = Object.keys(allCustomNames);
         //     }).setDelay(1)
         // )
 

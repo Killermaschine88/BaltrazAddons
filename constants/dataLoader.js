@@ -12,7 +12,7 @@ class DataLoader {
 
         // Updating Custom Names on Startup
         getCustomNamesData().then((res) => {
-            if(!res?.data) return;
+            if (!res?.data) return;
             this.customNames = res?.data;
         });
 

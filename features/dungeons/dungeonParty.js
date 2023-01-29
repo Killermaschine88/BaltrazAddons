@@ -80,7 +80,7 @@ class DungeonPlayerInfo extends BaseFeature {
                                             const allCustomNames = playerData.getCustomNames();
                                             let formattedName = `${rank} ${name}`;
 
-                                            if(allCustomNames[`${formattedName}`] && Settings.showCustomNames) {
+                                            if (allCustomNames[`${formattedName}`] && Settings.showCustomNames) {
                                                 formattedName = allCustomNames[`${formattedName}`];
                                             }
 

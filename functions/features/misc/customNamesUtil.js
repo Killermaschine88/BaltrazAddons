@@ -5,7 +5,7 @@ const NBTTagString = Java.type("net.minecraft.nbt.NBTTagString");
 
 export const checkLoreForCustomName = (item, originalName, customName) => {
     const loreList = item.getNBT().getCompoundTag("tag").getCompoundTag("display").getTagMap().get("Lore");
-    if(!loreList) return;
+    if (!loreList) return;
     let alreadyExisted = false;
 
     // Loop over lore list and check if the prefix already exists, if so update it
@@ -26,21 +26,21 @@ export const checkLoreForCustomName = (item, originalName, customName) => {
 };
 
 export const checkIfInText = (text, name) => {
-    if(text.includes(name) || text.includes(name?.replaceAll("&", "§"))) {
-        return true
+    if (text.includes(name) || text.includes(name?.replaceAll("&", "§"))) {
+        return true;
     } else {
-        return false
+        return false;
     }
-}
+};
 
 export const changeFormatting = (text) => {
     return text.replaceAll("&", "§");
-}
+};
 
 export const getPlayerName = (text) => {
     return text.split(" ")[1];
-}
+};
 
 export const fixShittyScoreboard = (text) => {
-    return text.replaceAll("🎁", "").replaceAll("⚽", "").replaceAll("🎉", "").replaceAll("👹", "").replaceAll("🏀", "").replaceAll("🍭", "").replaceAll("🌠", "").replaceAll("👾", "").replaceAll("🐍").replaceAll("🔮").replaceAll("👽", "").replaceAll("🎂", "")
-}
+    return text.replaceAll("🎁", "").replaceAll("⚽", "").replaceAll("🎉", "").replaceAll("👹", "").replaceAll("🏀", "").replaceAll("🍭", "").replaceAll("🌠", "").replaceAll("👾", "").replaceAll("🐍").replaceAll("🔮").replaceAll("👽", "").replaceAll("🎂", "");
+};
