@@ -9,6 +9,7 @@ import { getDungeonRunsDone, getDungeonItemInfo, getMiscDungeonIfno } from "../.
 import { getLevelByXp } from "../../functions/levels";
 import { missingAPIKeyError, sendError } from "../../functions/errors";
 import { prefix } from "../../constants/variables";
+import { playerData } from "../../constants/dataLoader";
 
 const dungeonClasses = {
     Mage: "M",
@@ -76,8 +77,15 @@ class DungeonPlayerInfo extends BaseFeature {
                                             const dungeonLevel = getLevelByXp(userData.dungeons.dungeon_types.catacombs.experience)?.level;
                                             const itemInfo = getDungeonItemInfo(userData?.inv_contents?.data);
 
+                                            const allCustomNames = playerData.getCustomNames();
+                                            let formattedName = `${rank} ${name}`;
+
+                                            if(allCustomNames[`${formattedName}`] && Settings.showCustomNames) {
+                                                formattedName = allCustomNames[`${formattedName}`];
+                                            }
+
                                             new Message(
-                                                new TextComponent(`${prefix} &7Dungeon Info &6${rank} ${name} &7(&bC${dungeonLevel}&7, &b${dungeonClasses[selectedClass]}${classLevel}&7) `).setClick("run_command", `/pv ${name}`).setHover("show_text", "&7Check the NEU Profile Viewer for more info!"),
+                                                new TextComponent(`${prefix} &7Dungeon Info &6${formattedName} &7(&bC${dungeonLevel}&7, &b${dungeonClasses[selectedClass]}${classLevel}&7) `).setClick("run_command", `/pv ${name}`).setHover("show_text", "&7Check the NEU Profile Viewer for more info!"),
                                                 new TextComponent("&c[Kick]\n").setClick("run_command", `/p kick ${name}`).setHover("show_text", "&7Click to kick this player from the party!"),
                                                 new TextComponent(`${prefix} &c[Dungeons] `).setHover("show_text", `${getDungeonRunsDone(userData, false)}`),
                                                 new TextComponent("&4[Master Mode] ").setHover("show_text", `${getDungeonRunsDone(userData, true)}`),

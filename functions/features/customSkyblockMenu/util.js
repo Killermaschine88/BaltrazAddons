@@ -9,4 +9,4 @@ const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 export const createGui = (name) => {
     let menu = new InventoryBasic(name, true, 54);
     return new GuiChest(Player.getPlayer().field_71071_by, menu);
-}
+};

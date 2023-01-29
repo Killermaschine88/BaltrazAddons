@@ -24,11 +24,11 @@ export const getKuudraItemInfo = (inventoryData) => {
     nbt = `${nbt}`;
 
     kuudraItems.forEach((item) => {
-        if(nbt.includes(item)) {
+        if (nbt.includes(item)) {
             hasItems.push(`&7${item}`);
             progress++;
         }
-    })
+    });
 
     return {
         string: hasItems.join("\n"),

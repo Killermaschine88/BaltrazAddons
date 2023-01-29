@@ -25,6 +25,10 @@ class BaseFeature {
     setRequiredWorld(world) {
         this.world = world;
     }
+
+    getFeatureManager() {
+        return this.featureManager;
+    }
 }
 
 export default BaseFeature;
