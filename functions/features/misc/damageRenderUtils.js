@@ -16,6 +16,7 @@ export const isValidDamageEntity = (entity) => {
     const entityName = entity.getName();
     const formattedName = parseInt(entity.getName().removeFormatting().replaceAll(",", "").replaceAll("✧", ""));
 
+    if (entityName.includes(":")) return false // Voidgloom Fix
     if (isNaN(formattedName)) return false; // Ignoring Non Numbers
     if (entityName.includes("§8[")) return false; // Ignoring Mob Nametags
     if (entityName.includes(" ")) return false; // Ignoring Stuff with Spaces as DMG ArmorStands don't have spaces
