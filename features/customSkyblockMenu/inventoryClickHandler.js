@@ -3,7 +3,8 @@
 
 import Settings from "../../constants/settings";
 import BaseFeature from "../../classes/BaseFeature";
-import { itemGui } from "./createMenu";
+import { menuGui } from "./createMenu";
+import { prefix } from "../../constants/variables";
 
 class InventoryClickHandler extends BaseFeature {
     constructor() {
@@ -12,11 +13,11 @@ class InventoryClickHandler extends BaseFeature {
         this.setName("customSkyblockMenu");
         this.addEvent(
             register("guiMouseClick", (mx, my, btn, gui, event) => {
-                if (Player.getContainer().getName().equals("§7Custom SkyBlock Menu§r")) {
+                if (Player.getContainer().getName().equals(`${prefix} §7SkyBlock Menu§r`)) {
                     if (Client.isShiftDown()) {
                         ChatLib.chat("hi?");
                         Client.currentGui.close();
-                        GuiHandler.openGui(itemGui);
+                        GuiHandler.openGui(menuGui);
                     }
                     // Cancel Inventory Clicks to prevent moving Items
                     cancel(event);

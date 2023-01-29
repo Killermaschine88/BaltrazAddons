@@ -5,8 +5,7 @@ import Settings from "../../../constants/settings";
 const MCNBTTagString = Java.type("net.minecraft.nbt.NBTTagString");
 const MCNBTTagCompound = Java.type("net.minecraft.nbt.NBTTagCompound");
 const MCNBTTagList = Java.type("net.minecraft.nbt.NBTTagList");
-const Integer = Java.type("java.lang.Integer");
-const MCNBTTagByte = Java.type("net.minecraft.nbt.NBTBase$NBTPrimitive");
+
 
 export const skullInSlot = (slot, name, lore, uuid, texture) => {
     // Grab Players current Inventory
@@ -46,6 +45,8 @@ export const skullInSlot = (slot, name, lore, uuid, texture) => {
         new NBTTagList(item.getNBT().getTag("tag").getTag("display").get("Lore").rawNBT).appendTag(new MCNBTTagString(lore[i]));
     }
 };
+
+
 
 export const itemInSlot = (slot, name, lore, itemType) => {
     let inv = Player.getContainer(); // cleans up stuff
