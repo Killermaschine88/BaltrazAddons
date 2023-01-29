@@ -1,6 +1,6 @@
 import PogObject from "../../PogData/index";
 
-export const prefix = "&8[&6BA&8]";
+export const prefix = "§8[§6BA§8]";
 
 export const data = new PogObject(
     "BaltrazAddons",
