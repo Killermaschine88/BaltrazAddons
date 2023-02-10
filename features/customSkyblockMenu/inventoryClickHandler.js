@@ -3,7 +3,8 @@
 
 import Settings from "../../constants/settings";
 import BaseFeature from "../../classes/BaseFeature";
-import { menuGui } from "./createMenu";
+import { menuGui } from "./menuGui";
+import { itemGui } from "./itemGui";
 import { prefix } from "../../constants/variables";
 
 class InventoryClickHandler extends BaseFeature {
@@ -17,7 +18,7 @@ class InventoryClickHandler extends BaseFeature {
                     if (Client.isShiftDown()) {
                         ChatLib.chat("hi?");
                         Client.currentGui.close();
-                        GuiHandler.openGui(menuGui);
+                        GuiHandler.openGui(itemGui);
                     }
                     // Cancel Inventory Clicks to prevent moving Items
                     cancel(event);

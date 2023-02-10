@@ -48,7 +48,7 @@ export const skullInSlot = (slot, name, lore, uuid, texture) => {
 
 
 
-export const itemInSlot = (slot, name, lore, itemType) => {
+export const itemInSlot = (slot, name, lore, itemType, variant) => { // variant is optional
     let inv = Player.getContainer(); // cleans up stuff
 
     // Create the Item with the given ItemType
@@ -68,5 +68,9 @@ export const itemInSlot = (slot, name, lore, itemType) => {
         }
         // Adding the Lore Line to the NBT
         new NBTTagList(item.getNBT().getTag("tag").getTag("display").get("Lore").rawNBT).appendTag(new MCNBTTagString(lore[i]));
+    }
+    
+    if (variant) {
+        item.setDamage(variant);
     }
 };

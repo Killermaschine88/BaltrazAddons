@@ -1,0 +1,272 @@
+/// <reference types="../../../CTAutocomplete" />
+/// <reference lib="es2015" />
+
+
+
+import * as Elementa from "../../../Elementa"
+
+  
+const Color = Java.type("java.awt.Color");
+  
+/*
+export const itemGui = new JavaAdapter(WindowScreen, {
+    init() {
+        let clickedGlass = false
+        let clickedPremade = false
+        let clickedCustom = false
+        const glassButton = new UIRoundedRectangle(0)
+            .setX((((Renderer.screen.getWidth() / 2) - (Renderer.screen.getWidth() / 4)) - 75).pixels())
+            .setY((Renderer.screen.getHeight() / 10).pixels())
+            .setColor(new ConstantColorConstraint(new Color(100 / 255, 100 / 255, 100 / 255)))
+            .setWidth((75).pixels())
+            .setHeight((25).pixels())
+            .enableEffect(new OutlineEffect(Color.WHITE, .5))
+            .onMouseClick(() => {
+                if (!clickedGlass) {
+                    clickedPremade = false;
+                    clickedCustom = false
+                    clickedGlass = true;
+                    glassSelection()
+                    clickedButtonColor(glassButton)
+                    defaultButtonColor(customButton)
+                    defaultButtonColor(premadeButton)
+                } else {
+                    clickedGlass = false;
+                    defaultButtonColor(glassButton)
+                }
+                })
+          .onMouseEnter((comp) => {
+              if (!clickedGlass) {
+                  clickedButtonColor(comp)
+              }
+        })
+          .onMouseLeave((comp) => {
+              if (!clickedGlass) {
+                 defaultButtonColor(comp)
+              }
+        })
+        .setChildOf(this.getWindow());
+      new UIText("Glass", false)
+        .setX(new CenterConstraint())
+        .setY(new CenterConstraint())
+        .setTextScale((1.3).pixels())
+        .setColor(new ConstantColorConstraint(Color.WHITE))
+        .setChildOf(glassButton);
+
+        const premadeButton = new UIRoundedRectangle(0)
+            .setX(new CenterConstraint())
+            .setY((Renderer.screen.getHeight() / 10).pixels())
+            .setColor(new ConstantColorConstraint(new Color(100 / 255, 100 / 255, 100 / 255)))
+            .setWidth((75).pixels())
+            .setHeight((25).pixels())
+            .enableEffect(new OutlineEffect(Color.WHITE, .5))
+            .onMouseClick(() => {
+                if (!clickedPremade) {
+                    clickedPremade = true;
+                    clickedGlass = false;
+                    clickedCustom = false
+                    clickedButtonColor(premadeButton);
+                    defaultButtonColor(customButton)
+                    defaultButtonColor(glassButton);
+                } else {
+                    clickedPremade = false;
+                    defaultButtonColor(premadeButton);
+                }
+                })
+          .onMouseEnter((comp) => {
+              if (!clickedPremade) {
+                  clickedButtonColor(comp);
+              }
+        })
+          .onMouseLeave((comp) => {
+              if (!clickedPremade) {
+                  defaultButtonColor(comp);
+              }
+        })
+        .setChildOf(this.getWindow());
+      new UIText("Premade", false)
+        .setX(new CenterConstraint())
+        .setY(new CenterConstraint())
+        .setTextScale((1.3).pixels())
+        .setColor(new ConstantColorConstraint(Color.WHITE))
+        .setChildOf(premadeButton);
+        
+        const customButton = new UIRoundedRectangle(0)
+            .setX((Renderer.screen.getWidth() / 2 + Renderer.screen.getWidth() / 4).pixels())
+            .setY((Renderer.screen.getHeight() / 10).pixels())
+            .setColor(new ConstantColorConstraint(new Color(100 / 255, 100 / 255, 100 / 255)))
+            .setWidth((75).pixels())
+            .setHeight((25).pixels())
+            .enableEffect(new OutlineEffect(Color.WHITE, .5))
+            .onMouseClick(() => {
+                if (!clickedCustom) {
+                    clickedCustom = true;
+                    clickedPremade = false;
+                    clickedGlass = false;
+                    clickedButtonColor(customButton);
+                    defaultButtonColor(premadeButton);
+                    defaultButtonColor(glassButton);
+                } else {
+                    clickedCustom = false;
+                    defaultButtonColor(customButton);
+                }
+                })
+        .setChildOf(this.getWindow());
+      new UIText("Custom", false)
+        .setX(new CenterConstraint())
+        .setY(new CenterConstraint())
+        .setTextScale((1.3).pixels())
+        .setColor(new ConstantColorConstraint(Color.WHITE))
+        .setChildOf(customButton);
+        
+    },
+  });
+    itemGui.init();
+    
+register("command", () => {
+    GuiHandler.openGui(itemGui);
+}).setName("itemGui");
+
+register("postGuiRender", () => {
+    if (Client.currentGui.get() == itemGui) {
+        new Item(160).setDamage(2).draw(100, 100, 1, 1) // x, y, idk, idk (lmfao)
+    }
+})
+
+export const defaultButtonColor = (button) => {
+    animate(button, (animation) => {
+        animation.setColorAnimation(
+            Animations.OUT_EXP,
+            0.5,
+            new ConstantColorConstraint(
+                new Color(100 / 255, 100 / 255, 100 / 255)
+            )
+        );
+    });
+}
+
+export const clickedButtonColor = (button) => {
+    animate(button, (animation) => {
+        animation.setColorAnimation(
+            Animations.OUT_EXP,
+            0.5,
+            new ConstantColorConstraint(
+                new Color(67 / 255, 67 / 255, 67 / 255)
+            )
+        );
+    });
+}
+*/
+
+// colors (will be moved later)
+
+function darkestColor () {
+    return new Color(46 / 255, 52 / 255, 64 / 255, 1)
+}
+
+function darkColor () {
+    return new Color(59 / 255, 66 / 255, 82 / 255, 1)
+}
+
+function lightColor () {
+    return new Color(67 / 255, 76 / 255, 94 / 255, 1)
+}
+
+function lightestColor ()  {
+    return new Color(76 / 255, 86 / 255, 106 / 255, 1)
+}
+
+function gold () {
+    return new Color(255 / 255, 170 / 255, 0 / 255, 1)
+}
+
+// base backgorund (omg so hot)
+let background = new Elementa.UIRoundedRectangle(15)
+.setX(new Elementa.CenterConstraint())
+.setY(new Elementa.CenterConstraint())
+.setWidth((Renderer.screen.getWidth() / 4 * 3 + 5).pixels())
+.setHeight((Renderer.screen.getHeight() / 3 * 2 + 5).pixels())
+.setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+
+.addChild (new Elementa.UIRoundedRectangle(15)
+.setX(new Elementa.CenterConstraint())
+.setY(new Elementa.CenterConstraint())
+.setWidth((Renderer.screen.getWidth() / 4 * 3).pixels())
+.setHeight((Renderer.screen.getHeight() / 3 * 2).pixels())
+.setColor(new Elementa.ConstantColorConstraint((darkColor()))
+))
+
+// gui 
+
+
+export const testGui = new JavaAdapter(Elementa.WindowScreen, {
+    init() {
+        let baButton = new Elementa.UIRoundedRectangle(5)
+        .setX(new Elementa.AdditiveConstraint(new Elementa.SiblingConstraint(), (5).pixels()))
+        .setWidth((Renderer.screen.getWidth() / 32).pixels())
+        .setHeight((Renderer.screen.getHeight() / 16).pixels())
+        .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+        .addChild(new Elementa.UIText("BA")
+            .setX(new Elementa.CenterConstraint())
+            .setY(new Elementa.CenterConstraint())
+            .setTextScale((1.3).pixels())
+            .setColor(new Elementa.ConstantColorConstraint(gold())))
+        baButton.setChildOf(this.getWindow())
+        // base backgorund (omg so hot)
+        let background = new Elementa.UIRoundedRectangle(15)
+        .setX(new Elementa.CenterConstraint())
+        .setY(new Elementa.CenterConstraint())
+        .setWidth((Renderer.screen.getWidth() / 4 * 3 + 5).pixels())
+        .setHeight((Renderer.screen.getHeight() / 3 * 2 + 5).pixels())
+        .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+
+        .addChild (new Elementa.UIRoundedRectangle(15)
+        .setX(new Elementa.CenterConstraint())
+        .setY(new Elementa.CenterConstraint())
+        .setWidth((Renderer.screen.getWidth() / 4 * 3).pixels())
+        .setHeight((Renderer.screen.getHeight() / 3 * 2).pixels())
+        .setColor(new Elementa.ConstantColorConstraint((darkColor()))
+        ))
+        
+        background.setChildOf(this.getWindow())
+
+        let buttonBackgrounds = 
+            new Elementa.UIRoundedRectangle(5)
+                .setX((baButton.getLeft() - 5).pixels())
+                .setY((Renderer.screen.getHeight() / 2 - (Renderer.screen.getHeight() / 3) - (Renderer.screen.getHeight() / 20)).pixels())
+                .setWidth((Renderer.screen.getWidth() / 32 + 5).pixels())
+                .setHeight((Renderer.screen.getHeight() / 16 + 5).pixels())
+                .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+                .setChildOf(this.getWindow())
+        background.setChildOf(this.getWindow())
+        
+        
+            
+
+        // base backgorund (omg so hot)
+
+        // holds all of the buttons so that its hot and sexy
+        let buttonContainer = new Elementa.UIContainer()
+            .setWidth(new Elementa.ChildBasedSizeConstraint())
+            .setHeight(new Elementa.ChildBasedSizeConstraint())
+            .setX((background.getLeft()).pixels())
+            .setY((Renderer.screen.getHeight() / 2 - (Renderer.screen.getHeight() / 3) - (Renderer.screen.getHeight() / 20)).pixels())
+            .setChildOf(this.getWindow())
+            
+        
+        
+        buttonBackgrounds.setChildOf(this.getWindow())
+        background.setChildOf(this.getWindow())
+        buttonContainer.setChildOf(this.getWindow())
+        baButton.setChildOf(buttonContainer);
+        
+        
+    },
+});
+  testGui.init();
+  
+register("command", () => {
+  GuiHandler.openGui(testGui);
+}).setName("testGui");
+
+
