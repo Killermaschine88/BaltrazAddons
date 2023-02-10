@@ -1,31 +1,38 @@
-/* Features */
-// Main Command
-import "./features/commands/mainCommand";
+/* Area specific Features */
+// Crimson Isles
+import "./features/crimsonIsles/kuudraPlayerInfo";
 
 // Dungeons
 import "./features/dungeons/dungeonParty";
 
-// Crimson Isles
-import "./features/crimsonIsles/mobHitboxes";
-import "./features/crimsonIsles/kuudraPlayerInfo";
+/* Global Features */
+// Custom Damage Renderer
+import "./features/global/customDamageRenderer";
 
-// Misc
-import "./features/misc/customDamageRenderer";
-import "./features/misc/showChampionLevel";
-import "./features/misc/showHecatombLevel";
-import "./features/misc/trackTrapperMobs";
-import "./features/misc/customNames";
+// Custom Names
+import "./features/global/customNames";
 
-/* Data Loader */
+// Main Command for the Module
+import "./features/global/mainCommand";
+
+// Show Champion/Hecatomb Level
+import "./features/global/showChampionLevel";
+import "./features/global/showHecatombLevel";
+
+/* Required */
+// Data Loader
 import "./constants/dataLoader";
 
-/* Settings Manager */
+// Settings Manager
 import "./classes/FeatureManager";
 
-/* Custom Skyblock Menu */
-import "./features/customSkyblockMenu/handleItemCreations";
-import "./features/customSkyblockMenu/inventoryClickHandler";
-import "./features/customSkyblockMenu/menuGui";
-import "./features/customSkyblockMenu/createItems";
-import "./features/customSkyblockMenu/tooltipHider";
-import "./features/customSkyblockMenu/itemGui";
+/* Quality of Life */
+// Crimson Mob ESP
+import "./features/qol/crimsonIsles/mobESP";
+
+// Packet Logger
+import "./features/qol/global/packetLogger";
+import "./features/qol/global/snakeMinigamerHelper";
+
+// Trapper Mob ESP
+import "./features/qol/theFarmingIslands/trapperMobESP";
