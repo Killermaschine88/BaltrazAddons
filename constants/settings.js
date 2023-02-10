@@ -6,7 +6,7 @@ import { defaultMessage } from "../functions/util";
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["Dungeons", "Crimson Isles", "Misc", "Custom SkyBlock Menu", "Config"];
+        const categories = ["Dungeons", "Crimson Isles", "Custom Name", "Custom SkyBlock Menu", "Misc", "Config"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
@@ -22,6 +22,8 @@ import { defaultMessage } from "../functions/util";
             "Damage Render",
             "Item Lore",
             "Misc QOL",
+            // Custom Name
+            "Custom Name",
             // Skyblock Menu
             "rename me",
             // Config
@@ -53,6 +55,9 @@ class Settings {
         this.addDependency("Minimum Berserker Level", "Auto Kick Berserker");
         this.addDependency("Minimum Archer Level", "Auto Kick Archer");
         this.addDependency("Minimum Tank Level", "Auto Kick Tank");
+
+        // Custom Name
+        this.addDependency("Replace Rank at Custom Names (PAID)", "Show Custom Names (PAID)")
 
         // Custom Skyblock Menu
         this.addDependency("Hide Glass Pane Tooltip", "Custom SkyBlock Menu (DEV)");
@@ -258,6 +263,25 @@ class Settings {
     })
     showHecatombLevel = false;
 
+    // -------------------------------------------------------
+    /*                      Custom Names                     */
+    // -------------------------------------------------------
+    @SwitchProperty({
+        name: "Show Custom Names (PAID)",
+        description: `If Custom Names bought from People should be Shown ${defaultMessage("&cTrue")}`,
+        category: "Custom Name",
+        subcategory: "Custom Names",
+    })
+    showCustomNames = true;
+
+    @SwitchProperty({
+        name: "Replace Rank at Custom Names (PAID)",
+        description: `If the Rank from People with Custom Names should be replaced aswell ${defaultMessage("&cTrue")}`,
+        category: "Custom Name",
+        subcategory: "Custom Names",
+    })
+    customNameReplaceRank = true;
+
     // Misc QOl
     // @SwitchProperty({
     //     name: "Snake Minigame Helper",
@@ -329,5 +353,9 @@ class Settings {
         subcategory: "Config",
     })
     isPublicRelease = true;
+
+    // -------------------------------------------------------
+    /*                      Fixed Settings                  */
+    // -------------------------------------------------------
 }
 export default new Settings();

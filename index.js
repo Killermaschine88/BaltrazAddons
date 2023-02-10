@@ -14,6 +14,7 @@ import "./features/misc/customDamageRenderer";
 import "./features/misc/showChampionLevel";
 import "./features/misc/showHecatombLevel";
 import "./features/misc/trackTrapperMobs";
+import "./features/misc/customNames";
 
 /* Data Loader */
 import "./constants/dataLoader";

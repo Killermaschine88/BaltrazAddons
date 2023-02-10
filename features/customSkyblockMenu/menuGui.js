@@ -12,10 +12,9 @@ const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 
 let firstTimeMenu = true;
 
-
 // will be moved probs
 let skyblockItems = {
-    "quiver": "#*&*#!Quiver"
+    quiver: "#*&*#!Quiver",
 };
 
 // will be moved probs
@@ -78,9 +77,8 @@ let menuSlots = {
 };
 
 if (skyblockItems.quiver === "") {
-    ChatLib.chat("error!")
+    ChatLib.chat("error!");
 }
-
 
 // Creating Custom Skyblock Menu GUI// field_71071_by => inventory
 let menuInv = new InventoryBasic(`${prefix} §7SkyBlock Menu§r`, true, 54);
@@ -91,17 +89,17 @@ register("postGuiRender", (gui) => {
 
     if (Player.getContainer()?.toString()?.includes(`${prefix} §7SkyBlock Menu§r`)) {
         if (firstTimeMenu) {
-
             firstTimeMenu = false;
 
             itemInSlot(0, "test", ["§7Click to open the Skyblock Menu§r", "§cim a genius ngl§r"], "paper");
-    
+
             for (let i = 1; i < 54; i++) {
                 if (i == 54) break;
                 if (menuSlots[i] !== "") {
-                    if (menuSlots[i].includes("#*&*#!")) { // checks if the item failed to be grabbed from the gui
+                    if (menuSlots[i].includes("#*&*#!")) {
+                        // checks if the item failed to be grabbed from the gui
                         let item = menuSlots[i].replace("#*&*#!", ""); // if it does create a new variable w/o that for the error
-                        itemInSlot(i, "§c§lERROR", [`§cError loading §b${item}`, "§cPlease report this to the discord", "§cThe discord link has been sent in chat.", "Before reporting try reopening the menu", "If you just created the item it may not be working yet in which case reopen the menu."], "barrier"); // creates in item in the slot they specified 
+                        itemInSlot(i, "§c§lERROR", [`§cError loading §b${item}`, "§cPlease report this to the discord", "§cThe discord link has been sent in chat.", "Before reporting try reopening the menu", "If you just created the item it may not be working yet in which case reopen the menu."], "barrier"); // creates in item in the slot they specified
                         ChatLib.chat(`${prefix} §cPlease send the error in #bug-reports§r`);
                         ChatLib.chat(new TextComponent(`${prefix} §7https://discord.gg/CM9ZT5U8na`).setHoverValue(`§bhttps://discord.gg/CM9ZT5U8na`).setClick("open_url", "https://discord.gg/CM9ZT5U8na"));
                     } else {
@@ -109,8 +107,6 @@ register("postGuiRender", (gui) => {
                     }
                 }
             }
-
-
         }
     }
 });
@@ -121,7 +117,6 @@ register("guiClosed", () => {
     if (firstTimeMenu == false) {
         firstTimeMenu = true;
     }
-
 });
 
 register("command", () => {
