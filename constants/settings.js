@@ -346,13 +346,6 @@ class Settings {
     })
     useEssentialsNotifications = true;
 
-    @SwitchProperty({
-        name: "Public Release",
-        description: `If the release is Public or not. ${defaultMessage("&cTrue")}`,
-        category: "Config",
-        subcategory: "Config",
-    })
-    isPublicRelease = true;
 
     // -------------------------------------------------------
     /*                      Fixed Settings                  */
