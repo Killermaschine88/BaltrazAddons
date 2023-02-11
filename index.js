@@ -36,3 +36,6 @@ import "./features/qol/global/snakeMinigamerHelper";
 
 // Trapper Mob ESP
 import "./features/qol/theFarmingIslands/trapperMobESP";
+
+// Ghost Blocks
+import "./features/qol/global/ghostBlocks";

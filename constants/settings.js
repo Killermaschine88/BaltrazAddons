@@ -6,7 +6,7 @@ import { defaultMessage } from "../functions/util";
 
 @Vigilant("BaltrazAddons", "BaltrazAddons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["Dungeons", "Crimson Isles", "Custom Name", "Custom SkyBlock Menu", "Misc", "Config"];
+        const categories = ["Dungeons", "Crimson Isles", "Custom Name", "Custom SkyBlock Menu", "Misc", "Qol", "Config"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     },
@@ -350,5 +350,16 @@ class Settings {
     // -------------------------------------------------------
     /*                      Fixed Settings                  */
     // -------------------------------------------------------
+
+    // -------------------------------------------------------
+    /*                      qol Settings                    */
+    // -------------------------------------------------------
+    @SwitchProperty({
+        name: "Ghost Block Keybind",
+        description: `Toggle if you want to set a Keybind to allow the creating of GhostBlocks. ${defaultMessage("&cFalse")}`,
+        category: "Qol",
+        subcategory: "Ghost Blocks",
+    })
+    ghostBlockKeybind = false;
 }
 export default new Settings();
