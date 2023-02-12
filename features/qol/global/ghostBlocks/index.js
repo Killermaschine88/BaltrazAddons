@@ -3,11 +3,14 @@
 
 import Settings from "../../../../constants/settings"
 const Blocks = Java.type("net.minecraft.init.Blocks");
+const ignoreBlocks = ["Chest", "Lever"]
 
 new KeyBind("Ghost Block", Keyboard.KEY_G, "BaltrazAddons").registerKeyPress(() => {
     if(!Settings.ghostBlockKeybind) return
     const originalBlock = Player.lookingAt();
+    const itemType = `${originalBlock?.type?.name}`
     if(!originalBlock) return
+    if(ignoreBlocks.includes(itemType)) return
     
     // Change the original block to air
     // func_175656_a -> setBlockState
