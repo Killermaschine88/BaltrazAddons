@@ -39,3 +39,7 @@ import "./features/qol/theFarmingIslands/trapperMobESP";
 
 // Ghost Blocks
 import "./features/qol/global/ghostBlocks";
+
+// SB menu
+import "./features/global/customSkyblockMenu/itemGui";
+import "./features/global/customSkyblockMenu/menuGui";

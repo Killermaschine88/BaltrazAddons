@@ -10,7 +10,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "prettier": "^2.8.1"
+        "prettier": "^2.8.4"
     },
     "prettier": {
         "arrowParens": "always",

@@ -1,10 +1,10 @@
 /// <reference types="../../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import Settings from "../../constants/settings";
-import BaseFeature from "../../classes/BaseFeature";
-import { skullInSlot, itemInSlot } from "../../functions/features/customSkyblockMenu/nbt";
-import { prefix } from "../../constants/variables";
+import Settings from "../../../constants/settings";
+import BaseFeature from "../../../classes/BaseFeature";
+import { skullInSlot, itemInSlot } from "./functions";
+import { prefix } from "../../../constants/variables";
 
 // Java Imports
 const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
@@ -99,7 +99,7 @@ register("postGuiRender", (gui) => {
                     if (menuSlots[i].includes("#*&*#!")) {
                         // checks if the item failed to be grabbed from the gui
                         let item = menuSlots[i].replace("#*&*#!", ""); // if it does create a new variable w/o that for the error
-                        itemInSlot(i, "§c§lERROR", [`§cError loading §b${item}`, "§cPlease report this to the discord", "§cThe discord link has been sent in chat.", "Before reporting try reopening the menu", "If you just created the item it may not be working yet in which case reopen the menu."], "barrier"); // creates in item in the slot they specified
+                        itemInSlot(i, "§c§lERROR", [`§cError loading item: §b${item}`, "§cPlease report this to the discord if this regularly occurs.", "§cThe discord link has been sent in chat."], "barrier"); // creates in item in the slot they specified
                         ChatLib.chat(`${prefix} §cPlease send the error in #bug-reports§r`);
                         ChatLib.chat(new TextComponent(`${prefix} §7https://discord.gg/CM9ZT5U8na`).setHoverValue(`§bhttps://discord.gg/CM9ZT5U8na`).setClick("open_url", "https://discord.gg/CM9ZT5U8na"));
                     } else {

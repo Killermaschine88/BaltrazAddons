@@ -1,4 +1,8 @@
 /// <reference types="../../../../CTAutocomplete" />
+// imports
+import { darkestColor, darkColor, lightColor, lightestColor } from "./constants";
+import * as Elementa from "../../../../Elementa";
+
 /// <reference lib="es2015" />
 
 // Java Imports
@@ -54,9 +58,8 @@ export const skullInSlot = (slot, name, lore, uuid, texture) => {
     }
 };
 
-
-
-export const itemInSlot = (slot, name, lore, itemType, variant) => { // variant is optional
+export const itemInSlot = (slot, name, lore, itemType, variant) => {
+    // variant is optional
     let inv = Player.getContainer(); // cleans up stuff
 
     // Create the Item with the given ItemType
@@ -77,8 +80,43 @@ export const itemInSlot = (slot, name, lore, itemType, variant) => { // variant 
         // Adding the Lore Line to the NBT
         new NBTTagList(item.getNBT().getTag("tag").getTag("display").get("Lore").rawNBT).appendTag(new MCNBTTagString(lore[i]));
     }
-    
+
     if (variant) {
         item.setDamage(variant);
     }
 };
+
+// function to get the center x coord of the elementa component (only for nav buttons)
+export const getCenterX = (comp) => {
+    return comp.getLeft() + comp.getWidth() / 8;
+};
+
+// function to get the center y coord of the elementa component (only for nav buttons)
+export const getCenterY = (comp) => {
+    return comp.getTop() + comp.getBottom() / 18;
+};
+
+// function to animate change button color to {color}
+export const animateColorDarkest = (comp) => {
+    Elementa.animate(comp, (animation) => {
+        animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(darkestColor()));
+    });
+};
+
+export const animateColorDark = (comp) => {
+    Elementa.animate(comp, (animation) => {
+        animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(darkColor()));
+    });
+}
+
+export const animateColorLight = (comp) => {
+    Elementa.animate(comp, (animation) => {
+        animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(lightColor()));
+    });
+}
+
+export const animateColorLightest = (comp) => {
+    Elementa.animate(comp, (animation) => {
+        animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(lightestColor()));
+    });
+}

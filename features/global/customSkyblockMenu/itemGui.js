@@ -1,272 +1,284 @@
 /// <reference types="../../../../CTAutocomplete" />
 /// <reference lib="es2015" />
 
+// imports
+import * as Elementa from "../../../../Elementa";
+import { getCenterX, getCenterY, animateColorDarkest, animateColorDark, animateColorLight, animateColorLightest } from "./functions";
+import { darkestColor, darkColor, lightColor, lightestColor, gold } from "./constants";
 
-
-import * as Elementa from "../../../../Elementa"
-
-  
+// java vars
 const Color = Java.type("java.awt.Color");
-  
-/*
-export const itemGui = new JavaAdapter(WindowScreen, {
+
+// screen size
+export const screenWidth = () => {
+    return Renderer.screen.getWidth();
+};
+export const screenHeight = () => {
+    return Renderer.screen.getHeight();
+};
+
+// click checks
+let clickedBa = true;
+let clickedSkyblock = false;
+let clickedItem = false;
+let clickedSkull = false;
+
+// elementa components used later on
+// main button parts
+let baButton = new Elementa.UIRoundedRectangle(3)
+    .setX(new Elementa.CenterConstraint())
+    .setY(new Elementa.CenterConstraint())
+    .setWidth((screenWidth() / 32).pixels())
+    .setHeight((screenHeight() / 16).pixels())
+    .setColor(new Elementa.ConstantColorConstraint(darkestColor()));
+
+let skyblockButton = new Elementa.UIRoundedRectangle(3)
+    .setX(new Elementa.CenterConstraint())
+    .setY(new Elementa.CenterConstraint())
+    .setWidth((screenWidth() / 32).pixels())
+    .setHeight((screenHeight() / 16).pixels())
+    .setColor(new Elementa.ConstantColorConstraint(lightColor()));
+
+let customItemButton = new Elementa.UIRoundedRectangle(3)
+    .setX(new Elementa.CenterConstraint())
+    .setY(new Elementa.CenterConstraint())
+    .setWidth((screenWidth() / 32).pixels())
+    .setHeight((screenHeight() / 16).pixels())
+    .setColor(new Elementa.ConstantColorConstraint(lightColor()));
+
+let customSkullButton = new Elementa.UIRoundedRectangle(3)
+    .setX(new Elementa.CenterConstraint())
+    .setY(new Elementa.CenterConstraint())
+    .setWidth((screenWidth() / 32).pixels())
+    .setHeight((screenHeight() / 16).pixels())
+    .setColor(new Elementa.ConstantColorConstraint(lightColor()))
+    .onWindowResize();
+
+// hover texts on nav buttons
+let baHoverText = new Elementa.UIRoundedRectangle(1)
+    .setX(new Elementa.MousePositionConstraint())
+    .setY(new Elementa.MousePositionConstraint())
+    .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .enableEffect(new Elementa.OutlineEffect(Color.WHITE, 0.5))
+    .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+    .addChild(new Elementa.UIText("Help + Glass").setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1).pixels()).setColor(new Elementa.ConstantColorConstraint(Color.WHITE)));
+
+let skyblockHoverText = new Elementa.UIRoundedRectangle(1)
+    .setX(new Elementa.MousePositionConstraint())
+    .setY(new Elementa.MousePositionConstraint())
+    .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .enableEffect(new Elementa.OutlineEffect(Color.WHITE, 0.5))
+    .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+    .addChild(new Elementa.UIText("Premade Items").setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1).pixels()).setColor(new Elementa.ConstantColorConstraint(Color.WHITE)));
+
+let itemHoverText = new Elementa.UIRoundedRectangle(1)
+    .setX(new Elementa.MousePositionConstraint())
+    .setY(new Elementa.MousePositionConstraint())
+    .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .enableEffect(new Elementa.OutlineEffect(Color.WHITE, 0.5))
+    .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+    .addChild(new Elementa.UIText("Custom Items").setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1).pixels()).setColor(new Elementa.ConstantColorConstraint(Color.WHITE)));
+let skullHoverText = new Elementa.UIRoundedRectangle(1)
+    .setX(new Elementa.MousePositionConstraint())
+    .setY(new Elementa.MousePositionConstraint())
+    .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+    .enableEffect(new Elementa.OutlineEffect(Color.WHITE, 0.5))
+    .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+    .addChild(new Elementa.UIText("Custom Skulls").setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1).pixels()).setColor(new Elementa.ConstantColorConstraint(Color.WHITE)));
+// gui
+export const itemGui = new JavaAdapter(Elementa.WindowScreen, {
     init() {
-        let clickedGlass = false
-        let clickedPremade = false
-        let clickedCustom = false
-        const glassButton = new UIRoundedRectangle(0)
-            .setX((((Renderer.screen.getWidth() / 2) - (Renderer.screen.getWidth() / 4)) - 75).pixels())
-            .setY((Renderer.screen.getHeight() / 10).pixels())
-            .setColor(new ConstantColorConstraint(new Color(100 / 255, 100 / 255, 100 / 255)))
-            .setWidth((75).pixels())
-            .setHeight((25).pixels())
-            .enableEffect(new OutlineEffect(Color.WHITE, .5))
+        // All Elementa components
+
+        // border on baButton (main button)
+        let baBackground = new Elementa.UIRoundedRectangle(3)
+            .setX(new Elementa.AdditiveConstraint(new Elementa.SiblingConstraint(), (5).pixels()))
+            .setY(new Elementa.CenterConstraint())
+            .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+            .onMouseEnter((comp) => {
+                animateColorDark(comp);
+                baHoverText.setChildOf(this.getWindow());
+            })
+            .onMouseLeave((comp) => {
+                animateColorLightest(comp);
+                baHoverText.getParent().removeChild(baHoverText);
+            })
             .onMouseClick(() => {
-                if (!clickedGlass) {
-                    clickedPremade = false;
-                    clickedCustom = false
-                    clickedGlass = true;
-                    glassSelection()
-                    clickedButtonColor(glassButton)
-                    defaultButtonColor(customButton)
-                    defaultButtonColor(premadeButton)
-                } else {
-                    clickedGlass = false;
-                    defaultButtonColor(glassButton)
+                if (!clickedBa) {
+                    clickedBa = true;
+                    clickedSkyblock = false;
+                    clickedItem = false;
+                    clickedSkull = false;
+                    animateColorDarkest(baButton);
+                    animateColorLight(skyblockButton);
+                    animateColorLight(customItemButton);
+                    animateColorLight(customSkullButton);
                 }
-                })
-          .onMouseEnter((comp) => {
-              if (!clickedGlass) {
-                  clickedButtonColor(comp)
-              }
-        })
-          .onMouseLeave((comp) => {
-              if (!clickedGlass) {
-                 defaultButtonColor(comp)
-              }
-        })
-        .setChildOf(this.getWindow());
-      new UIText("Glass", false)
-        .setX(new CenterConstraint())
-        .setY(new CenterConstraint())
-        .setTextScale((1.3).pixels())
-        .setColor(new ConstantColorConstraint(Color.WHITE))
-        .setChildOf(glassButton);
+            });
 
-        const premadeButton = new UIRoundedRectangle(0)
-            .setX(new CenterConstraint())
-            .setY((Renderer.screen.getHeight() / 10).pixels())
-            .setColor(new ConstantColorConstraint(new Color(100 / 255, 100 / 255, 100 / 255)))
-            .setWidth((75).pixels())
-            .setHeight((25).pixels())
-            .enableEffect(new OutlineEffect(Color.WHITE, .5))
+        // border on skyblockButton (premade)
+        let skyblockBackground = new Elementa.UIRoundedRectangle(3)
+            .setX(new Elementa.AdditiveConstraint(new Elementa.SiblingConstraint(), (5).pixels()))
+            .setY(new Elementa.CenterConstraint())
+            .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+            .onMouseEnter((comp) => {
+                animateColorDark(comp);
+                skyblockHoverText.setChildOf(this.getWindow());
+            })
+            .onMouseLeave((comp) => {
+                animateColorLightest(comp);
+                skyblockHoverText.getParent().removeChild(skyblockHoverText);
+            })
             .onMouseClick(() => {
-                if (!clickedPremade) {
-                    clickedPremade = true;
-                    clickedGlass = false;
-                    clickedCustom = false
-                    clickedButtonColor(premadeButton);
-                    defaultButtonColor(customButton)
-                    defaultButtonColor(glassButton);
-                } else {
-                    clickedPremade = false;
-                    defaultButtonColor(premadeButton);
+                if (!clickedSkyblock) {
+                    clickedBa = false;
+                    clickedSkyblock = true;
+                    clickedItem = false;
+                    clickedSkull = false;
+                    animateColorLight(baButton);
+                    animateColorDarkest(skyblockButton);
+                    animateColorLight(customItemButton);
+                    animateColorLight(customSkullButton);
                 }
-                })
-          .onMouseEnter((comp) => {
-              if (!clickedPremade) {
-                  clickedButtonColor(comp);
-              }
-        })
-          .onMouseLeave((comp) => {
-              if (!clickedPremade) {
-                  defaultButtonColor(comp);
-              }
-        })
-        .setChildOf(this.getWindow());
-      new UIText("Premade", false)
-        .setX(new CenterConstraint())
-        .setY(new CenterConstraint())
-        .setTextScale((1.3).pixels())
-        .setColor(new ConstantColorConstraint(Color.WHITE))
-        .setChildOf(premadeButton);
-        
-        const customButton = new UIRoundedRectangle(0)
-            .setX((Renderer.screen.getWidth() / 2 + Renderer.screen.getWidth() / 4).pixels())
-            .setY((Renderer.screen.getHeight() / 10).pixels())
-            .setColor(new ConstantColorConstraint(new Color(100 / 255, 100 / 255, 100 / 255)))
-            .setWidth((75).pixels())
-            .setHeight((25).pixels())
-            .enableEffect(new OutlineEffect(Color.WHITE, .5))
+            });
+        // border on customItemButton
+        let customItemBackground = new Elementa.UIRoundedRectangle(3)
+            .setX(new Elementa.AdditiveConstraint(new Elementa.SiblingConstraint(), (5).pixels()))
+            .setY(new Elementa.CenterConstraint())
+            .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+            .onMouseEnter((comp) => {
+                animateColorDark(comp);
+                itemHoverText.setChildOf(this.getWindow());
+            })
+            .onMouseLeave((comp) => {
+                animateColorLightest(comp);
+                itemHoverText.getParent().removeChild(itemHoverText);
+            })
             .onMouseClick(() => {
-                if (!clickedCustom) {
-                    clickedCustom = true;
-                    clickedPremade = false;
-                    clickedGlass = false;
-                    clickedButtonColor(customButton);
-                    defaultButtonColor(premadeButton);
-                    defaultButtonColor(glassButton);
-                } else {
-                    clickedCustom = false;
-                    defaultButtonColor(customButton);
+                if (!clickedItem) {
+                    clickedBa = false;
+                    clickedSkyblock = false;
+                    clickedItem = true;
+                    clickedSkull = false;
+                    animateColorLight(baButton);
+                    animateColorLight(skyblockButton);
+                    animateColorDarkest(customItemButton);
+                    animateColorLight(customSkullButton);
                 }
-                })
-        .setChildOf(this.getWindow());
-      new UIText("Custom", false)
-        .setX(new CenterConstraint())
-        .setY(new CenterConstraint())
-        .setTextScale((1.3).pixels())
-        .setColor(new ConstantColorConstraint(Color.WHITE))
-        .setChildOf(customButton);
-        
-    },
-  });
-    itemGui.init();
-    
-register("command", () => {
-    GuiHandler.openGui(itemGui);
-}).setName("itemGui");
+            });
+        // border on the skullButton
+        let customSkullBackground = new Elementa.UIRoundedRectangle(3)
+            .setX(new Elementa.AdditiveConstraint(new Elementa.SiblingConstraint(), (5).pixels()))
+            .setY(new Elementa.CenterConstraint())
+            .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+            .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+            .onMouseEnter((comp) => {
+                // when mouse is over the button
+                animateColorDark(comp);
+                skullHoverText.setChildOf(this.getWindow());
+            })
+            .onMouseLeave((comp) => {
+                // when mouse leaves the area of the button
+                animateColorLightest(comp);
+                skullHoverText.getParent().removeChild(skullHoverText);
+            })
+            .onMouseClick(() => {
+                if (!clickedSkull) {
+                    clickedBa = false;
+                    clickedSkyblock = false;
+                    clickedItem = false;
+                    clickedSkull = true;
+                    animateColorLight(baButton);
+                    animateColorLight(skyblockButton);
+                    animateColorLight(customItemButton);
+                    animateColorDarkest(customSkullButton);
+                }
+            });
 
-register("postGuiRender", () => {
-    if (Client.currentGui.get() == itemGui) {
-        new Item(160).setDamage(2).draw(100, 100, 1, 1) // x, y, idk, idk (lmfao)
-    }
-})
+        // BA text shown on baButton
+        let baText = new Elementa.UIText("BA").setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1.3).pixels()).setColor(new Elementa.ConstantColorConstraint(gold()));
 
-export const defaultButtonColor = (button) => {
-    animate(button, (animation) => {
-        animation.setColorAnimation(
-            Animations.OUT_EXP,
-            0.5,
-            new ConstantColorConstraint(
-                new Color(100 / 255, 100 / 255, 100 / 255)
-            )
-        );
-    });
-}
+        // image on skyBlockButton
+        let skyblockImage = new Elementa.UIImage.ofFile(new java.io.File("./config/ChatTriggers/modules/BaltrazAddons/features/global/customSkyblockMenu/assets/nether_star.png")).setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setWidth((24).pixels()).setHeight(new Elementa.ImageAspectConstraint());
 
-export const clickedButtonColor = (button) => {
-    animate(button, (animation) => {
-        animation.setColorAnimation(
-            Animations.OUT_EXP,
-            0.5,
-            new ConstantColorConstraint(
-                new Color(67 / 255, 67 / 255, 67 / 255)
-            )
-        );
-    });
-}
-*/
+        // image on customItemButton
+        let customItemImage = new Elementa.UIImage.ofFile(new java.io.File("./config/ChatTriggers/modules/BaltrazAddons/features/global/customSkyblockMenu/assets/apple_golden.png")).setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setWidth((24).pixels()).setHeight(new Elementa.ImageAspectConstraint());
 
-// colors (will be moved later)
+        // image on customSkullButton
+        let customSkullImage = new Elementa.UIImage.ofFile(new java.io.File("./config/ChatTriggers/modules/BaltrazAddons/features/global/customSkyblockMenu/assets/skull.png")).setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setWidth((20).pixels()).setHeight(new Elementa.ImageAspectConstraint());
 
-function darkestColor () {
-    return new Color(46 / 255, 52 / 255, 64 / 255, 1)
-}
-
-function darkColor () {
-    return new Color(59 / 255, 66 / 255, 82 / 255, 1)
-}
-
-function lightColor () {
-    return new Color(67 / 255, 76 / 255, 94 / 255, 1)
-}
-
-function lightestColor ()  {
-    return new Color(76 / 255, 86 / 255, 106 / 255, 1)
-}
-
-function gold () {
-    return new Color(255 / 255, 170 / 255, 0 / 255, 1)
-}
-
-// base backgorund (omg so hot)
-let background = new Elementa.UIRoundedRectangle(15)
-.setX(new Elementa.CenterConstraint())
-.setY(new Elementa.CenterConstraint())
-.setWidth((Renderer.screen.getWidth() / 4 * 3 + 5).pixels())
-.setHeight((Renderer.screen.getHeight() / 3 * 2 + 5).pixels())
-.setColor(new Elementa.ConstantColorConstraint(lightestColor()))
-
-.addChild (new Elementa.UIRoundedRectangle(15)
-.setX(new Elementa.CenterConstraint())
-.setY(new Elementa.CenterConstraint())
-.setWidth((Renderer.screen.getWidth() / 4 * 3).pixels())
-.setHeight((Renderer.screen.getHeight() / 3 * 2).pixels())
-.setColor(new Elementa.ConstantColorConstraint((darkColor()))
-))
-
-// gui 
-
-
-export const testGui = new JavaAdapter(Elementa.WindowScreen, {
-    init() {
-        let baButton = new Elementa.UIRoundedRectangle(5)
-        .setX(new Elementa.AdditiveConstraint(new Elementa.SiblingConstraint(), (5).pixels()))
-        .setWidth((Renderer.screen.getWidth() / 32).pixels())
-        .setHeight((Renderer.screen.getHeight() / 16).pixels())
-        .setColor(new Elementa.ConstantColorConstraint(darkColor()))
-        .addChild(new Elementa.UIText("BA")
+        //  border of the Background of gui
+        let backgroundBorder = new Elementa.UIRoundedRectangle(15)
             .setX(new Elementa.CenterConstraint())
             .setY(new Elementa.CenterConstraint())
-            .setTextScale((1.3).pixels())
-            .setColor(new Elementa.ConstantColorConstraint(gold())))
-        baButton.setChildOf(this.getWindow())
-        // base backgorund (omg so hot)
-        let background = new Elementa.UIRoundedRectangle(15)
-        .setX(new Elementa.CenterConstraint())
-        .setY(new Elementa.CenterConstraint())
-        .setWidth((Renderer.screen.getWidth() / 4 * 3 + 5).pixels())
-        .setHeight((Renderer.screen.getHeight() / 3 * 2 + 5).pixels())
-        .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+            .setWidth(((screenWidth() / 4) * 3 + 5).pixels())
+            .setHeight(((screenHeight() / 3) * 2 + 5).pixels())
+            .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
+            .addChild(
+                new Elementa.UIRoundedRectangle(15) // adds the main background above it
+                    .setX(new Elementa.CenterConstraint())
+                    .setY(new Elementa.CenterConstraint())
+                    .setWidth(((screenWidth() / 4) * 3).pixels())
+                    .setHeight(((screenHeight() / 3) * 2).pixels())
+                    .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+            );
+        // add the background to the gui to let button container hook into it
+        backgroundBorder.setChildOf(this.getWindow());
 
-        .addChild (new Elementa.UIRoundedRectangle(15)
-        .setX(new Elementa.CenterConstraint())
-        .setY(new Elementa.CenterConstraint())
-        .setWidth((Renderer.screen.getWidth() / 4 * 3).pixels())
-        .setHeight((Renderer.screen.getHeight() / 3 * 2).pixels())
-        .setColor(new Elementa.ConstantColorConstraint((darkColor()))
-        ))
-        
-        background.setChildOf(this.getWindow())
-
-        let buttonBackgrounds = 
-            new Elementa.UIRoundedRectangle(5)
-                .setX((baButton.getLeft() - 5).pixels())
-                .setY((Renderer.screen.getHeight() / 2 - (Renderer.screen.getHeight() / 3) - (Renderer.screen.getHeight() / 20)).pixels())
-                .setWidth((Renderer.screen.getWidth() / 32 + 5).pixels())
-                .setHeight((Renderer.screen.getHeight() / 16 + 5).pixels())
-                .setColor(new Elementa.ConstantColorConstraint(lightestColor()))
-                .setChildOf(this.getWindow())
-        background.setChildOf(this.getWindow())
-        
-        
-            
-
-        // base backgorund (omg so hot)
-
-        // holds all of the buttons so that its hot and sexy
+        // Container for navigation buttons on top of gui
         let buttonContainer = new Elementa.UIContainer()
-            .setWidth(new Elementa.ChildBasedSizeConstraint())
-            .setHeight(new Elementa.ChildBasedSizeConstraint())
-            .setX((background.getLeft()).pixels())
-            .setY((Renderer.screen.getHeight() / 2 - (Renderer.screen.getHeight() / 3) - (Renderer.screen.getHeight() / 20)).pixels())
-            .setChildOf(this.getWindow())
-            
+            .setWidth(screenWidth().pixels())
+            .setHeight((screenHeight() / 16).pixels())
+            .setX((backgroundBorder.getLeft() + screenWidth() / 100).pixels())
+            .setY((screenHeight() / 2 - screenHeight() / 3 - screenHeight() / 16).pixels())
+            .onWindowResize();
         
-        
-        buttonBackgrounds.setChildOf(this.getWindow())
-        background.setChildOf(this.getWindow())
-        buttonContainer.setChildOf(this.getWindow())
-        baButton.setChildOf(buttonContainer);
-        
-        
+        let glassContainer = new Elementa.UIContainer()
+            .setWidth(screenWidth().pixels())
+            .setHeight((screenHeight() / 16).pixels())
+            .setX((backgroundBorder.getLeft() + screenWidth() / 100).pixels())
+            .setY(new Elementa.CenterConstraint())
+
+        // adds the button container in order to add the buttons afterwards
+        buttonContainer.setChildOf(this.getWindow());
+
+        // BA Button (default)
+        baBackground.setChildOf(buttonContainer);
+        baButton.setChildOf(baBackground);
+        baText.setChildOf(baButton);
+
+        // Skyblock Button (premade items)
+        skyblockBackground.setChildOf(buttonContainer);
+        skyblockButton.setChildOf(skyblockBackground);
+        skyblockImage.setChildOf(skyblockButton);
+
+        // Custom Item Button (custom items)
+        customItemBackground.setChildOf(buttonContainer);
+        customItemButton.setChildOf(customItemBackground);
+        customItemImage.setChildOf(customItemButton);
+
+        // Custom Skull Button (custom skulls)
+        customSkullBackground.setChildOf(buttonContainer);
+        customSkullButton.setChildOf(customSkullBackground);
+        customSkullImage.setChildOf(customSkullButton);
+
+        // add the background to the gui
+        backgroundBorder.setChildOf(this.getWindow());
     },
 });
-  testGui.init();
-  
+itemGui.init();
+
 register("command", () => {
-  GuiHandler.openGui(testGui);
-}).setName("testGui");
-
-
+    GuiHandler.openGui(itemGui);
+}).setName("itemgui");
