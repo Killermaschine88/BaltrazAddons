@@ -1,13 +1,14 @@
 /// <reference types="../../../../CTAutocomplete" />
+/// <reference lib="es2015" />
+
 // imports
 import { darkestColor, darkColor, lightColor, lightestColor } from "./constants";
 import * as Elementa from "../../../../Elementa";
 
-/// <reference lib="es2015" />
-
 // Java Imports
 const GuiChest = Java.type("net.minecraft.client.gui.inventory.GuiChest");
 const InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
+const Color = Java.type("java.awt.Color");
 
 // field_71071_by => inventory
 export const createGui = (name) => {
@@ -96,27 +97,54 @@ export const getCenterY = (comp) => {
     return comp.getTop() + comp.getBottom() / 18;
 };
 
-// function to animate change button color to {color}
+// functions to animate change button color to {color}
 export const animateColorDarkest = (comp) => {
+    if (!comp) return;
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(darkestColor()));
     });
 };
 
 export const animateColorDark = (comp) => {
+    if (!comp) return;
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(darkColor()));
     });
-}
+};
 
 export const animateColorLight = (comp) => {
+    if (!comp) return;
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(lightColor()));
     });
-}
+};
 
 export const animateColorLightest = (comp) => {
+    if (!comp) return;
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(lightestColor()));
     });
-}
+};
+// title case skidded from online (https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript) cause i dont have time to make my own
+export const titleCase = (str) => {
+    str = str.toString();
+
+    return str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
+
+// creates hover text 
+export const hoverNav = (text) => {
+    text = titleCase(text);
+    return new Elementa.UIRoundedRectangle(1)
+        .setX(new Elementa.MousePositionConstraint())
+        .setY(new Elementa.MousePositionConstraint())
+        .setWidth(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+        .setHeight(new Elementa.AdditiveConstraint(new Elementa.ChildBasedMaxSizeConstraint(), (5).pixels()))
+        .enableEffect(new Elementa.OutlineEffect(Color.WHITE, 0.5))
+        .setColor(new Elementa.ConstantColorConstraint(darkColor()))
+        .addChild(new Elementa.UIText(text).setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1).pixels()).setColor(new Elementa.ConstantColorConstraint(Color.WHITE)));
+};
+
+
