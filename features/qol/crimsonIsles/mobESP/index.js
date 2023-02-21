@@ -32,7 +32,7 @@ class MobHitboxes extends BaseFeature {
 
                     if (name.includes("Vanquisher") || name.includes("[Lv400] Thunder") || name.includes("[Lv600] Lord Jawbus")) {
                         if (existedTicks >= 10) {
-                            RenderLib.drawEspBox(entity.getX(), entity.getY(), entity.getZ(), 2, 2, 1, 0, 0, 1, true);
+                            RenderLib.drawEspBox(entity.getX(), entity.getY() - 2, entity.getZ(), 2, 2, 1, 0, 0, 1, true);
                             if (lastNotification === 0) {
                                 if (Settings.useEssentialsNotifications) {
                                     essentialsNotification(`${name} is nearby!`, "Box drawn on Mob.", 5);

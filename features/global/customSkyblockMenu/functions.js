@@ -107,16 +107,16 @@ export const animateColorDark = (comp) => {
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(darkColor()));
     });
-}
+};
 
 export const animateColorLight = (comp) => {
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(lightColor()));
     });
-}
+};
 
 export const animateColorLightest = (comp) => {
     Elementa.animate(comp, (animation) => {
         animation.setColorAnimation(Elementa.Animations.OUT_EXP, 0.5, new Elementa.ConstantColorConstraint(lightestColor()));
     });
-}
+};

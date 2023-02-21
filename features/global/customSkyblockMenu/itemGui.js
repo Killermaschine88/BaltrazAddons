@@ -243,12 +243,12 @@ export const itemGui = new JavaAdapter(Elementa.WindowScreen, {
             .setX((backgroundBorder.getLeft() + screenWidth() / 100).pixels())
             .setY((screenHeight() / 2 - screenHeight() / 3 - screenHeight() / 16).pixels())
             .onWindowResize();
-        
+
         let glassContainer = new Elementa.UIContainer()
             .setWidth(screenWidth().pixels())
             .setHeight((screenHeight() / 16).pixels())
             .setX((backgroundBorder.getLeft() + screenWidth() / 100).pixels())
-            .setY(new Elementa.CenterConstraint())
+            .setY(new Elementa.CenterConstraint());
 
         // adds the button container in order to add the buttons afterwards
         buttonContainer.setChildOf(this.getWindow());
