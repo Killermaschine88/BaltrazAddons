@@ -134,7 +134,7 @@ export const titleCase = (str) => {
     });
 };
 
-// creates hover text 
+// creates hover text
 export const hoverNav = (text) => {
     text = titleCase(text);
     return new Elementa.UIRoundedRectangle(1)
@@ -146,5 +146,3 @@ export const hoverNav = (text) => {
         .setColor(new Elementa.ConstantColorConstraint(darkColor()))
         .addChild(new Elementa.UIText(text).setX(new Elementa.CenterConstraint()).setY(new Elementa.CenterConstraint()).setTextScale((1).pixels()).setColor(new Elementa.ConstantColorConstraint(Color.WHITE)));
 };
-
-
