@@ -56,6 +56,9 @@ class Settings {
         this.addDependency("Minimum Archer Level", "Auto Kick Archer");
         this.addDependency("Minimum Tank Level", "Auto Kick Tank");
 
+        // Crimson Isles
+        this.addDependency("Hide Mob HP Armor Stands", "Hide Kuudra Armor Stands");
+
         // Custom Name
         this.addDependency("Replace Rank at Custom Names (PAID)", "Show Custom Names (PAID)")
 
@@ -202,6 +205,14 @@ class Settings {
         subcategory: "Kuudra",
     })
     hideKuudraArmorStands = false;
+
+    @SwitchProperty({
+        name: "Hide Mob HP Armor Stands",
+        description: `If the HP Display of the Mobs should be hidden aswell (Doesn't affect Kuudra or its Tentacles) ${defaultMessage("&cFalse")}`,
+        category: "Crimson Isles",
+        subcategory: "Kuudra",
+    })
+    hideMobHPArmorStands = false;
 
     // -------------------------------------------------------
     /*                          Misc                        */

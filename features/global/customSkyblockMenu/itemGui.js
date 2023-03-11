@@ -3,7 +3,7 @@
 
 // imports
 import * as Elementa from "../../../../Elementa";
-import { getCenterX, getCenterY, animateColorDarkest, animateColorDark, animateColorLight, animateColorLightest, titleCase, } from "./functions";
+import { getCenterX, getCenterY, animateColorDarkest, animateColorDark, animateColorLight, animateColorLightest, titleCase } from "./functions";
 import { darkestColor, darkColor, lightColor, lightestColor, gold } from "./constants";
 
 // java vars
