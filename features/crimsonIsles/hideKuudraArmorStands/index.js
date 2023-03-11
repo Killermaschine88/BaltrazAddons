@@ -6,6 +6,7 @@ import BaseFeature from "../../../classes/BaseFeature";
 import { playerData } from "../../../constants/dataLoader";
 
 const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
+let stopRemoving = true;
 const ignoredLocations = ["-98 78.125 -99.0625", "-110 78.125 -106", "-106 78.125 -99.0625", "-106 78.125 -112.9375", "-98 78.125 -112.9375", "-94 78.125 -106"];
 const dontRemoveWithMob = [
     "[", // Mob HP
@@ -19,6 +20,7 @@ const dontRemoveWithMob = [
     "RIGHT-CLICK TO MOUNT", // Mounting Cannon
     "CANNON", // Cannon
     "Explodes In:", // Energy Orbs
+    "BALLISTA", // Ballista
 ];
 const dontRemoveWithoutMob = [
     "PROGRESS", // Building Progress
@@ -33,7 +35,6 @@ const dontRemoveWithoutMob = [
     "Explodes In:", // Energy Orbs
 ];
 
-let stopRemoving = false;
 
 class HideKuudraArmorStands extends BaseFeature {
     constructor() {
