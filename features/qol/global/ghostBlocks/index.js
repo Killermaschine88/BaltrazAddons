@@ -11,7 +11,7 @@ new KeyBind("Ghost Block", Keyboard.KEY_G, "BaltrazAddons").registerKeyPress(() 
     const itemType = `${originalBlock?.type?.name}`;
     if (!originalBlock) return;
     if (ignoreBlocks.includes(itemType)) return;
-    if (!originalBlock?.getX() || !originalBlock?.getY() || originalBlock?.getZ()) return;
+    if (!originalBlock?.getX() && !originalBlock?.getY() && originalBlock?.getZ()) return;
 
     // Change the original block to air
     // func_175656_a -> setBlockState

@@ -7,7 +7,7 @@ import { playerData } from "../../../constants/dataLoader";
 
 const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
 let stopRemoving = true;
-const ignoredLocations = ["-98 78.125 -99.0625", "-110 78.125 -106", "-106 78.125 -99.0625", "-106 78.125 -112.9375", "-98 78.125 -112.9375", "-94 78.125 -106"];
+const ignoredLocations = ["-98, 78.125, -99.0625", "-110, 78.125, -106", "-106, 78.125, -99.0625", "-106, 78.125, -112.9375", "-98, 78.125, -112.9375", "-94, 78.125, -106", "-69, 79, -103", "-130, 79, -111"];
 const dontRemoveWithMob = [
     "[", // Mob HP
     "PROGRESS", // Building Progress
@@ -36,7 +36,6 @@ const dontRemoveWithoutMob = [
     "Energy Charge:", // Ballista Charge
 ];
 
-
 class HideKuudraArmorStands extends BaseFeature {
     constructor() {
         super();
@@ -62,10 +61,16 @@ class HideKuudraArmorStands extends BaseFeature {
                 }
 
                 // Location Check
-                if (ignoredLocations.some((listEntry) => entityLocation.includes(listEntry))) return;
+                if (
+                    ignoredLocations.some((listEntry) => {
+                        let split = listEntry.split(" ");
+                        entity.distanceTo(split[0], split[1], split[2]) <= 1;
+                    })
+                )
+                    return;
 
                 // Ignoring Stuff at Cannon
-                if(entity.distanceTo(-103, 81, -106) <= 1) return;
+                if (entity.distanceTo(-103, 81, -106) <= 1) return;
 
                 // func_72900_e -> removeEntity()
                 if (!stopRemoving) World.getWorld().func_72900_e(mcEntity);
