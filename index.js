@@ -1,6 +1,7 @@
 /* Area specific Features */
 // Crimson Isles
 import "./features/crimsonIsles/kuudraPlayerInfo";
+import "./features/crimsonIsles/hideKuudraArmorStands";
 
 // Dungeons
 import "./features/dungeons/dungeonParty";
