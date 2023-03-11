@@ -20,7 +20,7 @@ class DataLoader {
         register("worldLoad", () => {
             setTimeout(() => {
                 ChatLib.command("locraw");
-            }, 3000);
+            }, 1000);
         });
 
         // Locraw chat event to get current world
