@@ -20,7 +20,7 @@ const dontRemoveWithMob = [
     "RIGHT-CLICK TO MOUNT", // Mounting Cannon
     "CANNON", // Cannon
     "Explodes In:", // Energy Orbs
-    "BALLISTA", // Ballista
+    "Energy Charge:", // Ballista Charge
 ];
 const dontRemoveWithoutMob = [
     "PROGRESS", // Building Progress
@@ -33,6 +33,7 @@ const dontRemoveWithoutMob = [
     "RIGHT-CLICK TO MOUNT", // Mounting Cannon
     "CANNON", // Cannon
     "Explodes In:", // Energy Orbs
+    "Energy Charge:", // Ballista Charge
 ];
 
 
@@ -62,6 +63,9 @@ class HideKuudraArmorStands extends BaseFeature {
 
                 // Location Check
                 if (ignoredLocations.some((listEntry) => entityLocation.includes(listEntry))) return;
+
+                // Ignoring Stuff at Cannon
+                if(entity.distanceTo(-103, 81, -106) <= 1) return;
 
                 // func_72900_e -> removeEntity()
                 if (!stopRemoving) World.getWorld().func_72900_e(mcEntity);
