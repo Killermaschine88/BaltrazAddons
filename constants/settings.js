@@ -199,7 +199,7 @@ class Settings {
     kuudraPlayerInfo = false;
 
     @SwitchProperty({
-        name: "Hide Kuudra Armor Stands",
+        name: "Hide Kuudra Armor Stands (BUGGY MESS)",
         description: `Hides all the useless Armorstand Entities in Kuudra and only shows the useful ones. ${defaultMessage("&cFalse")}`,
         category: "Crimson Isles",
         subcategory: "Kuudra",

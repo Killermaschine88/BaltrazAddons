@@ -7,7 +7,7 @@ import { playerData } from "../../../constants/dataLoader";
 
 const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
 let stopRemoving = true;
-const ignoredLocations = ["-98, 78.125, -99.0625", "-110, 78.125, -106", "-106, 78.125, -99.0625", "-106, 78.125, -112.9375", "-98, 78.125, -112.9375", "-94, 78.125, -106", "-69, 79, -103", "-130, 79, -111"];
+const ignoredLocations = ["-98, 78.125, -99.0625", "-110, 78.125, -106", "-106, 78.125, -99.0625", "-106, 78.125, -112.9375", "-98, 78.125, -112.9375", "-94, 78.125, -106", "-69, 79, -103", "-130, 79, -111", "-103, 81, -106"];
 const dontRemoveWithMob = [
     "[", // Mob HP
     "PROGRESS", // Building Progress
@@ -49,7 +49,6 @@ class HideKuudraArmorStands extends BaseFeature {
 
                 const mcEntity = entity.getEntity();
                 const entityName = entity.getName();
-                const entityLocation = `${entity.getX()} ${entity.getY()} ${entity.getZ()}`;
 
                 if (!(mcEntity instanceof EntityArmorStand)) return;
 
@@ -60,17 +59,10 @@ class HideKuudraArmorStands extends BaseFeature {
                     if (dontRemoveWithMob.some((listEntry) => entityName.includes(listEntry))) return;
                 }
 
-                // Location Check
-                if (
-                    ignoredLocations.some((listEntry) => {
-                        let split = listEntry.split(" ");
-                        entity.distanceTo(split[0], split[1], split[2]) <= 1;
-                    })
-                )
-                    return;
-
-                // Ignoring Stuff at Cannon
-                if (entity.distanceTo(-103, 81, -106) <= 1) return;
+                // Ignoring Cannons
+                ChatLib.chat(entity.distanceTo(-70, 79, -103))
+                if (entity.distanceTo(-70, 79, -103) <= 1.5) return;
+                if (entity.distanceTo(-130, 79, -112) <= 1.5) return;
 
                 // func_72900_e -> removeEntity()
                 if (!stopRemoving) World.getWorld().func_72900_e(mcEntity);
